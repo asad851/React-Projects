@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Ubuntu', sans-serif;
+}
+.opacitylayer{
+    background: linear-gradient(
+        180deg,
+        rgba(4,21,45,0) 0%,
+        #04152d 79.19%
+        );
+}
+.lazy-load-image-background{
+    width: 100%;
+}
