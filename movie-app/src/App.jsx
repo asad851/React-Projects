@@ -9,6 +9,7 @@ import Details from './pages/Details'
 import SearchResult from './pages/SearchResult'
 import Explore from './pages/Explore'
 import PageNotFound from './pages/PageNotFound'
+import Header from './Components/Header'
 
   
   
@@ -32,15 +33,13 @@ import PageNotFound from './pages/PageNotFound'
 
   return (
     <>
-      
+    <Header/> 
     <Routes>
       <Route path='/' element={<HomePage/>} />
       <Route path='/:mediaType:id' element={<Details/>} />
       <Route path='/search:query' element={<SearchResult/>} />
       <Route path='/explore/:mediaType' element={<Explore/>} />
       <Route path='*' element={<PageNotFound/>} />
-
-
     </Routes>
       
     </>
