@@ -33,7 +33,7 @@ const handleSubmit=()=>{
   }
 
   return (
-    <>
+    <div className="h-[1300px]">
       <div className="w-full h-[450px] bg-[#04152d] min-[768px]:h-[700px] relative flex justify-center items-center ">
         {!loading && (
           <div className="h-[450px ] w-full min-[768px]:h-[700px]  absolute top-0 left-0  opacity-[0.5] overflow-hidden ">
@@ -73,6 +73,6 @@ const handleSubmit=()=>{
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
