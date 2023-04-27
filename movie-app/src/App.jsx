@@ -10,6 +10,7 @@ import SearchResult from './pages/SearchResult'
 import Explore from './pages/Explore'
 import PageNotFound from './pages/PageNotFound'
 import Header from './Components/Header'
+import Footer from './Components/Footer'
 
   
   
@@ -30,7 +31,7 @@ import Header from './Components/Header'
     useEffect(() => {
       testApi()
     }, [])
-
+     document.body.style.backgroundColor="#04152d"
   return (
     <>
     <Header/> 
@@ -41,6 +42,7 @@ import Header from './Components/Header'
       <Route path='/explore/:mediaType' element={<Explore/>} />
       <Route path='*' element={<PageNotFound/>} />
     </Routes>
+    <Footer/>
       
     </>
   )

@@ -5,7 +5,7 @@ import { SlMenu } from "react-icons/sl";
 import { HiOutlineSearch } from "react-icons/hi";
 import { VscChromeClose } from "react-icons/vsc";
 import icon from "../assets/Tvpedia.svg";
-import { Drawer } from "flowbite";
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,19 +15,18 @@ const Header = () => {
   const [showSearch, setshowSearch] = useState("");
   const [lastscrollY, setLastScrollY] = useState(0);
   const [query, setQuery] = useState("");
-  const [clicks, setClicks] = useState(1)
+  const [clicks, setClicks] = useState(1);
 
   const openSearch = (e) => {
     setshowSearch(true);
     setShowMobileMenu(false);
-    setClicks(clicks+1)
+    setClicks(clicks + 1);
 
-    console.log(clicks)
-    for(let n=1; n<100;n++){
-        
-      if(clicks===2*n){
+    console.log(clicks);
+    for (let n = 1; n < 100; n++) {
+      if (clicks === 2 * n) {
         setshowSearch(false);
-         }
+      }
     }
   };
 
@@ -54,9 +53,9 @@ const Header = () => {
       }, 1000);
     }
   };
-  let windowWidth ;
+  let windowWidth;
   function handleScreenSizeChange() {
-     windowWidth = window.innerWidth;
+    windowWidth = window.innerWidth;
     if (windowWidth > 768) {
       setShowMobileMenu(false);
     } else {
@@ -64,16 +63,13 @@ const Header = () => {
     }
   }
   useEffect(() => {
-    window.addEventListener("resize", handleScreenSizeChange);           
-    return()=>{
-      window.removeEventListener("resize", handleScreenSizeChange);           
+    window.addEventListener("resize", handleScreenSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleScreenSizeChange);
+    };
+  }, [windowWidth]);
 
-    }
-    
-  }, [windowWidth])
-  
-
-  const top = " backdrop-blur-[3.5px] bg-[rgba(0,0,0,0.25)]";
+  const top = ` backdrop-blur-[3.5px]  bg-[rgba(0,0,0,0.25)]`;
   const hide = "transform translate-y-[-60px]";
   const show = "bg-[#020c1b]";
 
@@ -88,26 +84,24 @@ const Header = () => {
       setClass(top);
     }
     setLastScrollY(window.scrollY);
-
   };
-  useEffect(()=>{
-    window.addEventListener('scroll',handleScroll);
-    return()=>{
-      window.removeEventListener('scroll',handleScroll)
-    }
-  },[lastscrollY])
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastscrollY]);
 
   useEffect(() => {
-    window.scrollTo(0,0)
-  }, [location])
-  
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <header
       className={` w-full flex justify-between items-center h-[60px] px-[20px] fixed transform 
      translate-y-0 transition-all delay-[0.15s] ease-linear z-[2]  ${
-       showMobileMenu ? " flex-col bg-[#04152d]" : " bg-[rgba(0,0,0,0.25)]"
-     } ${Class}`}
+        showMobileMenu ? " flex-col bg-[#04152d]" :  `${Class?`${Class}`:"backdrop-blur-[3.5px]  bg-[rgba(0,0,0,0.25)]"}`
+      } `}
     >
       <div>
         <img
@@ -132,37 +126,36 @@ const Header = () => {
           {<HiOutlineSearch onClick={openSearch} className="font-semibold" />}
         </li>
       </ul>
-      {showMobileMenu && (
-        <div className="  transition-all delay-[0.5s] ease-linear w-full fixed top-[60px] border-t-[1px] min-[768px]:hidden border-t-white">
-          <ul
-            id="drawer-top-example"
-            className={`flex flex-col items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white   bg-[#04152d] w-full divide-y-[1px] divide-white `}
+
+      <div
+        className={` transition-[top] delay-[0.3s] ease-linear w-full fixed ${
+          showMobileMenu ? "top-[60px] " : "top-[-120px]"
+        } right-0 left-0 border-t-[1px] min-[768px]:hidden border-t-white`}
+      >
+        <ul
+          id="drawer-top-example"
+          className={`flex flex-col items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white   bg-[#04152d] w-full divide-y-[1px] divide-white `}
+        >
+          <li
+            className={`cursor-pointer  h-[40px] w-full flex justify-center items-center`}
+            onClick={() => navigateTo("movie")}
           >
-            <li
-              className={`cursor-pointer  h-[40px] w-full flex justify-center items-center`}
-              onClick={() => navigateTo("movie")}
-            >
-              Movies
-            </li>
-            <li
-              className={`cursor-pointer h-[40px]  w-full flex justify-center items-center`}
-              onClick={() => navigateTo("tv")}
-            >
-              TvSeries
-            </li>
-            <li
-              className={`cursor-pointer  h-[40px] w-full flex justify-center items-center`}
-            >
-              {
-                <HiOutlineSearch
-                  onClick={openSearch}
-                  className="font-semibold"
-                />
-              }
-            </li>
-          </ul>
-        </div>
-      )}
+            Movies
+          </li>
+          <li
+            className={`cursor-pointer h-[40px]  w-full flex justify-center items-center`}
+            onClick={() => navigateTo("tv")}
+          >
+            TvSeries
+          </li>
+          <li
+            className={`cursor-pointer  h-[40px] w-full flex justify-center items-center`}
+          >
+            {<HiOutlineSearch onClick={openSearch} className="font-semibold" />}
+          </li>
+        </ul>
+      </div>
+
       <div className="min-[768px]:hidden text-white flex items-center">
         <HiOutlineSearch
           onClick={openSearch}
@@ -171,12 +164,12 @@ const Header = () => {
         {showMobileMenu ? (
           <VscChromeClose
             onClick={() => setShowMobileMenu(false)}
-            className={`${
+            className={` ${
               showMobileMenu ? "absolute right-[20px] top-[20px] " : ""
             }`}
           />
         ) : (
-          <SlMenu onClick={openMenu} />
+          <SlMenu onClick={openMenu} className="" />
         )}
       </div>
 
