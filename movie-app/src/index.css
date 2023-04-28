@@ -17,3 +17,7 @@ body{
 .lazy-load-image-background{
     width: 100%;
 }
+::-webkit-scrollbar{
+    display:none
+
+}

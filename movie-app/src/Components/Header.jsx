@@ -99,7 +99,7 @@ const Header = () => {
   return (
     <header
       className={` w-full flex justify-between items-center h-[60px] px-[20px] fixed transform 
-     translate-y-0 transition-all delay-[0.15s] ease-linear z-[2]  ${
+     translate-y-0 transition-all delay-[0.15s] ease-linear z-[2]    ${
         showMobileMenu ? " flex-col bg-[#04152d]" :  `${Class?`${Class}`:"backdrop-blur-[3.5px]  bg-[rgba(0,0,0,0.25)]"}`
       } `}
     >
