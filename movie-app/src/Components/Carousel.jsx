@@ -25,20 +25,20 @@ export default function Carousel({ data, loading }) {
        onClick={navigation()}
       />
       <BsFillArrowRightCircleFill
-       className="absolute top-[44%] text-black text-[30px] z-[1] right-[30px] cursor-pointer translate-y-[50%] opacity-[0.5] hover:opacity-[0.8] hidden min-[768px]:block "
+       className="absolute top-[44%] text-black text-[30px] z-[1] right-[50px] cursor-pointer translate-y-[50%] opacity-[0.5] hover:opacity-[0.8] hidden min-[768px]:block "
        onClick={navigation()}
       />
-      { !loading? (<div className="flex gap-[4px] overflow-y-scroll  ">
+      { !loading? (<div className="flex gap-[0px] overflow-y-scroll mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0 items-center ">
                      {data?.map((item)=>{
                       const postUrl= item.poster_path? url.poster + item.poster_path : noposter;
                       return(
                         <div key={item.id}
-                         className="flex"
+                         className="w-[125px] cursor-pointer shrink-0 min-[768px]:width-[calc(25%-15px)] lg:width-[calc(20%-16px)]  "
                          onClick={()=>navigate()}
                         >
                         
-                        <div className="w-[150px] h-[250px] aspect-[1/1.5] mb-[30px]">
-                          <Img src={postUrl} className="rounded-[15px] h-full w-full "/>
+                        <div className="w-[full]  aspect-[1/1.5] mb-[30px] relative bg-cover flex items-end justify-between p-[10px]">
+                          <Img src={postUrl} className="rounded-[12px] h-full w-full top-0 left-0 overflow-hidden bg-center  "/>
                         </div>
 
                         </div>
