@@ -28,16 +28,21 @@ export default function Carousel({ data, loading }) {
        className=""
        onClick={navigation()}
       />
-      { !loading? (<div>
+      { !loading? (<div className="flex gap-[10px] overflow-y-scroll justify-center px-[20px]">
                      {data?.map((item)=>{
                       const postUrl= item.poster_path? url.poster + item.poster_path : noposter;
                       return(
                         <div key={item.id}
-                         className=""
+                         className="flex"
                          onClick={()=>navigate()}
                         >
+                        
+                        <div className="w-[150px] h-[250px] shadow-md">
+                          <Img src={postUrl} className="rounded-[12px] h-full w-full "/>
+                        </div>
 
                         </div>
+
                       )
                     })}
                    </div>

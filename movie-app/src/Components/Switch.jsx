@@ -11,7 +11,7 @@ export default function Switch({ time, onSwitch }) {
     onSwitch(tab, index);
   };
   return (
-    <div className="bg-white  p-[4px] h-[35px]  rounded-[20px]">
+    <div className="bg-white  p-[4px] h-[35px] flex items-center rounded-[20px]">
       <div className=" h-full flex items-center relative">
         {time.map((tab, index) => (
           <span
