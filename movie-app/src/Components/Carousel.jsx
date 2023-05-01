@@ -17,18 +17,18 @@ export default function Carousel({ data, loading }) {
 
   }
   return (
-    <div>
+    <div className="mb-[50px]">
       {/* <div>{data?.title&& <div> {data?.title}</div>}</div> */}
-      <div>
+      <div className="relative max-w-[1200px] px-[20px] mx-auto w-full">
       <BsFillArrowLeftCircleFill
-       className=""
+       className="absolute top-[44%] text-black text-[30px] z-[1]  cursor-pointer translate-y-[50%] opacity-[0.5] left-[30px] hover:opacity-[0.8] hidden min-[768px]:block "
        onClick={navigation()}
       />
       <BsFillArrowRightCircleFill
-       className=""
+       className="absolute top-[44%] text-black text-[30px] z-[1] right-[30px] cursor-pointer translate-y-[50%] opacity-[0.5] hover:opacity-[0.8] hidden min-[768px]:block "
        onClick={navigation()}
       />
-      { !loading? (<div className="flex gap-[10px] overflow-y-scroll justify-center px-[20px]">
+      { !loading? (<div className="flex gap-[4px] overflow-y-scroll  ">
                      {data?.map((item)=>{
                       const postUrl= item.poster_path? url.poster + item.poster_path : noposter;
                       return(
@@ -37,8 +37,8 @@ export default function Carousel({ data, loading }) {
                          onClick={()=>navigate()}
                         >
                         
-                        <div className="w-[150px] h-[250px] shadow-md">
-                          <Img src={postUrl} className="rounded-[12px] h-full w-full "/>
+                        <div className="w-[150px] h-[250px] aspect-[1/1.5] mb-[30px]">
+                          <Img src={postUrl} className="rounded-[15px] h-full w-full "/>
                         </div>
 
                         </div>
