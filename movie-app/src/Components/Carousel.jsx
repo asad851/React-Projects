@@ -40,7 +40,7 @@ export default function Carousel({ data, loading }) {
         />
         {!loading ? (
           <div
-            className="flex gap-[0px] overflow-y-hidden mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0 items-center "
+            className="flex gap-[0px] overflow-y-hidden mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0 items-center h-full"
             ref={CarouselContainer}
           >
             {data?.map((item) => {
@@ -50,15 +50,15 @@ export default function Carousel({ data, loading }) {
               return (
                 <div
                   key={item.id}
-                  className="w-[125px] cursor-pointer shrink-0 min-[768px]:width-[calc(25%-15px)] lg:width-[calc(20%-16px)]  "
+                  className="w-[125px] cursor-pointer shrink-0 min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] h-full  "
                   onClick={() =>
                     navigate(`/${item.media_type || endpoint}/${item.id}`)
                   }
                 >
-                  <div className="w-[full]  aspect-[1/1.5] mb-[30px] relative bg-cover flex items-end justify-between p-[10px]">
+                  <div className="w-full h-full aspect-[1/1.5] mb-[30px] relative bg-cover flex items-end justify-between p-[10px]">
                     <Img
                       src={postUrl}
-                      className="rounded-[12px] h-full w-full top-0 left-0 overflow-hidden bg-center  "
+                      className="rounded-[12px] h-full  w-full top-0 left-0 overflow-hidden bg-center object-cover "
                     />
                   </div>
                 </div>

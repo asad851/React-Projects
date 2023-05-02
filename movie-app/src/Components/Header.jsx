@@ -148,11 +148,7 @@ const Header = () => {
           >
             TvSeries
           </li>
-          <li
-            className={`cursor-pointer  h-[40px] w-full flex justify-center items-center`}
-          >
-            {<HiOutlineSearch onClick={openSearch} className="font-semibold" />}
-          </li>
+          
         </ul>
       </div>
 
@@ -174,9 +170,9 @@ const Header = () => {
       </div>
 
       {showSearch && (
-        <div className="w-full flex items-center justify-center absolute top-[70px]">
+        <div className="w-full flex items-center justify-center absolute  right-0 top-[70px] max-w-[1370px]  px-[20px] ">
           <input
-            className=" h-[35px] min-[768px]:h-[50px]  w-[calc(100%-100px)] min-[768px]:w-[calc(100%-150px)] rounded-[35px] text-slate-700 focus:outline-none focus:border-none text-[14px] pl-[20px]"
+            className=" h-[35px] min-[768px]:h-[50px] max-w-[1200px]  w-full rounded-[35px] text-slate-700 focus:outline-none focus:border-none text-[14px] pl-[20px]"
             type="search"
             name=""
             id=""
