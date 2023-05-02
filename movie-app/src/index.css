@@ -18,6 +18,17 @@ body{
     width: 100%;
 }
 ::-webkit-scrollbar{
-    display:none
-
+    display:none;
+    
 }
+.CircularProgressbar .CircularProgressbar-text{
+    font-size: 34px;
+    font-weight: 700;
+    
+    fill: #04152d;
+}
+.CircularProgressbar .CircularProgressbar-trail {
+    stroke: transparent;
+    
+}
+
