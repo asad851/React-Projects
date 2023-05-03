@@ -114,15 +114,15 @@ const Header = () => {
       </div>
       <ul
         id="drawer-top-example"
-        className={`flex  items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white max-[768px]:hidden gap-[10px] min-[768px]:gap-[25px] `}
+        className={`flex  items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white max-[768px]:hidden gap-[10px] min-[768px]:gap-[25px]  `}
       >
-        <li className={`cursor-pointer  `} onClick={() => navigateTo("movie")}>
+        <li className={`cursor-pointer  hover:text-gray-400`} onClick={() => navigateTo("movie")}>
           Movies
         </li>
-        <li className={`cursor-pointer `} onClick={() => navigateTo("tv")}>
+        <li className={`cursor-pointer hover:text-gray-400 `} onClick={() => navigateTo("tv")}>
           TvSeries
         </li>
-        <li className={`cursor-pointer `}>
+        <li className={`cursor-pointer hover:text-gray-400 `}>
           {<HiOutlineSearch onClick={openSearch} className="font-semibold" />}
         </li>
       </ul>
@@ -137,13 +137,13 @@ const Header = () => {
           className={`flex flex-col items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white   bg-[#04152d] w-full divide-y-[1px] divide-white `}
         >
           <li
-            className={`cursor-pointer  h-[40px] w-full flex justify-center items-center`}
+            className={`cursor-pointer  h-[40px] w-full flex justify-center items-center hover:text-gray-400`}
             onClick={() => navigateTo("movie")}
           >
             Movies
           </li>
           <li
-            className={`cursor-pointer h-[40px]  w-full flex justify-center items-center`}
+            className={`cursor-pointer h-[40px]  w-full flex justify-center items-center hover:text-gray-400`}
             onClick={() => navigateTo("tv")}
           >
             TvSeries

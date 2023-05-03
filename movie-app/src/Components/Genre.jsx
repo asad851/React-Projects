@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
+
 export default function genre({ data }) {
   const { genre } = useSelector((state) => state.home);
   const Container = useRef();
@@ -9,7 +10,7 @@ export default function genre({ data }) {
  const Function =()=>{
    const width = Container.current.offsetWidth
    setWidth(width)
-   console.log(width)
+   
  }
  useEffect(()=>{
   Function()
