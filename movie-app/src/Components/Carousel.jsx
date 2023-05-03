@@ -22,14 +22,17 @@ export default function Carousel({ data, loading }) {
     console.log(container)
      const scrollamount =
      dir==="left"?
-                  container.scrollLeft - (container.offsetWidth+20)
-                 :container.scrollLeft + (container.offsetWidth+20)
+                   container.scrollLeft - (container.offsetWidth+20)
+                  :container.scrollLeft + (container.offsetWidth+20)
      container.scrollTo({
       left:scrollamount,
       behavior:"smooth",
      })
   };
-  console.log(data?.[0].genre_ids)
+  const skeleton=()=>{
+
+  }
+  
   return (
     <div className="mb-[50px]">
       {/* <div>{data?.title&& <div> {data?.title}</div>}</div> */}
@@ -55,19 +58,28 @@ export default function Carousel({ data, loading }) {
               return (
                 <div
                   key={item.id}
-                  className="w-[125px] cursor-pointer shrink-0 min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] h-full  "
+                  className="w-[125px] cursor-pointer shrink-0 min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] h-full hover:scale-[1.02] duration-200 ease-linear "
                   onClick={() =>
                     navigate(`/${item.media_type || endpoint}/${item.id}`)
                   }
                 >
-                  <div className="w-full h-full aspect-[1/1.5] mb-[30px] relative bg-cover flex items-end justify-between p-[10px]">
+                  <div className="w-full h-full aspect-[1/1.5] mb-[20px] relative bg-cover flex items-end justify-between p-[10px]">
                     <Img
                       src={postUrl}
                       className="rounded-[12px] h-full  w-full top-0 left-0 overflow-hidden bg-center object-cover "
                     />
                     <Rating rating={item.vote_average.toFixed(1)} />
-                    <Genre />
+                    <Genre className="hidden min-[768px]:flex min-[768px]:justify-end flex-wrap   " data={item?.genre_ids?.slice(0,2)}/>
+                    {/* {console.log(item.genre_ids)} */}
                    
+                  </div>
+                  <div className="flex text-white flex-col ">
+                  <span className="text-[16px] text-white  mb-[10] leading-[24px] min-[768px]:text-[20px] truncate">
+                    {item.title||item.name}
+                  </span>
+                  <span className="text-[13px] opacity-[0.5]">
+                    {dayjs(item.release_Date).format("D MMM, YYYY")}
+                  </span>
                   </div>
                 </div>
               );

@@ -10,7 +10,7 @@ export const homeSlicer = createSlice({
         getApiConfig:(state,action)=>{
             state.url=action.payload;
         },
-        getGenre:()=>{
+        getGenre:(state,action)=>{
             state.genre=action.payload
         }
     }

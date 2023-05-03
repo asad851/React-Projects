@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {fetchData} from './Api'
 import { useDispatch } from "react-redux"
-import {getApiConfig} from './store/homeSlicer'
+import {getApiConfig, getGenre} from './store/homeSlicer'
 import { Routes,Route } from 'react-router-dom'
 
 import HomePage from './pages/Home/HomePage'
@@ -30,8 +30,24 @@ import Footer from './Components/Footer'
     }
     useEffect(() => {
       testApi()
+      handleGenre()
     }, [])
      document.body.style.backgroundColor="#04152d"
+     const handleGenre = async() =>{
+      const genreData = []
+      const mediaType = ["movie","tv"]
+      const allgenre = {}
+      mediaType.forEach((url)=>{
+        genreData.push(fetchData(`/genre/${url}/list`))
+      })
+      const data = await Promise.all(genreData)
+      data?.map((g)=>{
+        return g?.data?.genres?.map((item)=>{allgenre[item.id]=item})
+        //  console.log(g.data.genres)
+      })
+      
+       dispatch(getGenre(allgenre))
+     }
   return (
     <>
     <Header/> 
