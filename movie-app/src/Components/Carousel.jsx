@@ -19,7 +19,7 @@ export default function Carousel({ data, loading }) {
   const navigation = (dir) => {
     
     const container = CarouselContainer.current;
-    console.log(container)
+    
      const scrollamount =
      dir==="left"?
                    container.scrollLeft - (container.offsetWidth+20)
@@ -68,9 +68,11 @@ export default function Carousel({ data, loading }) {
                       src={postUrl}
                       className="rounded-[12px] h-full  w-full top-0 left-0 overflow-hidden bg-center object-cover "
                     />
+                    
                     <Rating rating={item.vote_average.toFixed(1)} />
-                    <Genre className="hidden min-[768px]:flex min-[768px]:justify-end flex-wrap   " data={item?.genre_ids?.slice(0,2)}/>
-                    {/* {console.log(item.genre_ids)} */}
+                    <Genre className="  " data={item?.genre_ids?.slice(0,2)}/>
+                    
+                    
                    
                   </div>
                   <div className="flex text-white flex-col ">
