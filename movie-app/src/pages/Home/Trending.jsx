@@ -13,7 +13,7 @@ export default function Trending() {
     <div className="relative mb-[70px]">
       <div className="w-full max-w-[1200px] mx-auto px-[20px] flex justify-between items-center mb-[20px] max-[306px]:flex-col ">
         <span className="text-[24px] font-medium  text-white" >Trending</span>
-        <Switch time={["Day", "Week"]} onSwitch={onSwitch} />
+        <Switch category={["Day", "Week"]} onSwitch={onSwitch} />
       </div>
         <div>
           <Carousel data={data?.data?.results} loading={loading}/>

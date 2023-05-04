@@ -33,6 +33,7 @@ import Footer from './Components/Footer'
       handleGenre()
     }, [])
      document.body.style.backgroundColor="#04152d"
+     
      const handleGenre = async() =>{
       const genreData = []
       const mediaType = ["movie","tv"]

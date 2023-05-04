@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Switch({ time, onSwitch }) {
+export default function Switch({  onSwitch ,category}) {
   const [left, setleft] = useState(0);
   const [selected, setSelected] = useState(0);
   const activeSwitch = (tab, index) => {
@@ -13,7 +13,7 @@ export default function Switch({ time, onSwitch }) {
   return (
     <div className="bg-white  p-[4px] h-[35px] flex items-center rounded-[20px]">
       <div className=" h-full flex items-center relative">
-        {time.map((tab, index) => (
+        {category.map((tab, index) => (
           <span
             key={index}
             className={`w-[100px] font-semibold h-full rounded-[20px] flex items-center  text-[14px] z-[1] cursor-pointer transition-colors ease-linear duration-300 justify-center ${
