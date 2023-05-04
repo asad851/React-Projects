@@ -43,7 +43,7 @@ import Footer from './Components/Footer'
       const data = await Promise.all(genreData)
       data?.map((g)=>{
         return g?.data?.genres?.map((item)=>{allgenre[item.id]=item})
-        //  console.log(g.data.genres)
+        
       })
       
        dispatch(getGenre(allgenre))
