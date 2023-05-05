@@ -8,9 +8,9 @@ export default function HomePage() {
   return (
     <div className=''>
     <HeroBanner/>
+    <TopRated/>
     <Trending/>
     <Popular/>
-    <TopRated/>
     
     </div>
   )
