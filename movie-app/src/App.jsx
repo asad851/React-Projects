@@ -5,7 +5,7 @@ import {getApiConfig, getGenre} from './store/homeSlicer'
 import { Routes,Route } from 'react-router-dom'
 
 import HomePage from './pages/Home/HomePage'
-import Details from './pages/Details'
+import Details from './pages/Details/Details'
 import SearchResult from './pages/SearchResult'
 import Explore from './pages/Explore'
 import PageNotFound from './pages/PageNotFound'
@@ -54,7 +54,7 @@ import Footer from './Components/Footer'
     <Header/> 
     <Routes>
       <Route path='/' element={<HomePage/>} />
-      <Route path='/:mediaType:id' element={<Details/>} />
+      <Route path='/:mediaType/:id' element={<Details/>} />
       <Route path='/search:query' element={<SearchResult/>} />
       <Route path='/explore/:mediaType' element={<Explore/>} />
       <Route path='*' element={<PageNotFound/>} />

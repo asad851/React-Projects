@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
@@ -10,12 +10,14 @@ import noposter from "../assets/no-poster.png";
 import Img from "./Img";
 import Rating from "./Rating";
 import Genre from "./Genre";
-import '../index.css'
+import "../index.css";
 
-export default function Carousel({ data, loading }) {
+export default function Carousel({ data, loading,endpoint }) {
   const CarouselContainer = useRef();
+  const genrebox = useRef()
   const { url } = useSelector((state) => state.home);
   const navigate = useNavigate();
+  // console.log(data)
 
   const navigation = (dir) => {
     const container = CarouselContainer.current;
@@ -29,6 +31,8 @@ export default function Carousel({ data, loading }) {
       behavior: "smooth",
     });
   };
+  
+ 
   const skeleton = () => {
     return (
       <div className="w-[125px] min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] shrink-0 ] ">
@@ -77,7 +81,11 @@ export default function Carousel({ data, loading }) {
                     />
 
                     <Rating rating={item.vote_average.toFixed(1)} />
-                    <Genre className="  " data={item?.genre_ids?.slice(0, 2)} />
+                    <Genre 
+                      classNamecarousel="flex-col"
+                      data={item?.genre_ids?.slice(0, 2)}
+                      
+                    />
                   </div>
                   <div className="flex text-white flex-col ">
                     <span className="text-[16px] text-white  mb-[10] leading-[24px] min-[768px]:text-[20px] truncate">

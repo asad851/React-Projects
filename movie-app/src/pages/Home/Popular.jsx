@@ -16,7 +16,7 @@ export default function Popular() {
         <Switch category={["Movies", "Tv series"]} onSwitch={onSwitch} />
       </div>
         <div>
-          <Carousel data={data?.data?.results} loading={loading}/>
+          <Carousel data={data?.data?.results} loading={loading} endpoint={endpoint}/>
         </div>
     </div>
   );}
