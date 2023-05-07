@@ -3,7 +3,7 @@ import { BsCheckLg } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
 
-export default function genre({ data,classNamecarousel}) {
+export default function genre({ data,classNamecarousel,classDetails}) {
   const { genre } = useSelector((state) => state.home);
   const Container = useRef();
   const[width,setWidth] = useState(0)
@@ -20,7 +20,7 @@ export default function genre({ data,classNamecarousel}) {
  },[])
   return (
     <div ref={Container}
-      className={` gap-[5px] p-0 absolute bottom-[20px] right-[20px] text-white  hidden min-[768px]:flex min-[768px]:justify-end flex-wrap ${width>=114?(classNamecarousel?classNamecarousel:"flex-row"):"flex-row"}`}
+      className={` gap-[5px] p-0   text-white  h ${width>=114?(classNamecarousel?classNamecarousel:classDetails):(classNamecarousel?"absolute bottom-[20px] right-[20px] hidden justify-end min-[768px]:flex  flex-wrap flex-row":classDetails)}`}
     >
       {data?.map((g) => {
         if (!genre[g]?.name) return;

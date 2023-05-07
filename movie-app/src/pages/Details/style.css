@@ -1,0 +1,35 @@
+#Circlerating .CircularProgressbar .CircularProgressbar-text{
+    font-size: 40px;
+    font-weight: 700;
+    
+    fill: white;
+}
+
+.triangle {
+    stroke-dasharray: 242;
+    stroke-dashoffset: 482;
+    stroke: white;
+    /* transform: translateY(0); */
+    transition: all 0.7s ease-in-out;
+}
+.circle {
+    stroke: white;
+    stroke-dasharray: 650;
+    stroke-dashoffset: 1300;
+    transition: all 0.5s ease-in-out;
+}
+#play:hover  .triangle{
+    stroke-dashoffset: 0;
+    opacity: 1;
+    stroke:rgb(67, 137, 216);
+    
+    /* fill:red; */
+    animation: trailorPlay 0.7s ease-in-out;
+}
+#play:hover  .circle{
+    stroke-dashoffset: 0;
+    stroke:white;
+}
+#play:hover .text{
+    color:rgb(67, 137, 216);
+}

@@ -2,11 +2,11 @@ import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 // 
-export default function Rating({ rating }) {
+export default function Rating({ rating,className,classCarousel }) {
   return (
-    <div className="rounded-[50%] absolute bottom-[-15px]  left-[20px]  h-[43px] w-[43px] min-[768px]:w-[53px] min-[768px]:h-[53px] flex justify-center items-center bg-white text-black">
+    <div className={`rounded-[50%]   text-black ${className?className:classCarousel}`}>
       <CircularProgressbar
-        className="text-[34px] font-[700] fill-[#04152d] relative m-[2px] w-[39px] h-[39px] min-[768px]:w-[49px] min-[768px]:h-[49px]  bg-white shrink-0 rounded-[50%]   "
+        className={`text-[34px] font-[700] fill-[#04152d] relative   shrink-0 rounded-[50%] ${className?"m-[2px] w-[66px] h-[66px] min-[768px]:w-[86px] min-[768px]:h-[86px] bg-[#041226] ":"m-[2px] w-[39px] h-[39px] min-[768px]:w-[49px] min-[768px]:h-[49px] bg-white"}`} 
         value={rating}
         maxValue={10}
         text={rating}

@@ -38,7 +38,7 @@ export default function Carousel({ data, loading,endpoint }) {
       <div className="w-[125px] min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] shrink-0 ] ">
         <div className="rounded-[12px] w-full aspect-[1/1.5] mb-[30px] skeleton animate-pulse "></div>
         <div className="flex flex-col">
-          <div className="w-full h-[20px] mb-[10px] skeleton animate-pulse"></div>
+          <div className="w-full h-[20px] mb-[10px] skeleton "></div>
           <div className="w-[75%] h-[20px] skeleton animate-pulse"></div>
         </div>
       </div>
@@ -64,25 +64,25 @@ export default function Carousel({ data, loading,endpoint }) {
           >
             {data?.map((item) => {
               const postUrl = item.poster_path
-                ? url.poster + item.poster_path
+                ? url.backdrop + item.poster_path
                 : noposter;
               return (
                 <div
                   key={item.id}
-                  className="w-[125px] cursor-pointer shrink-0 min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] h-full hover:scale-[1.02] duration-200 ease-linear "
+                  className="w-[125px] cursor-pointer shrink-0 min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] h-full py-[10px] hover:scale-[1.02] duration-200 ease-linear "
                   onClick={() =>
                     navigate(`/${item.media_type || endpoint}/${item.id}`)
                   }
                 >
-                  <div className="w-full h-full aspect-[1/1.5] mb-[20px] relative bg-cover flex items-end justify-between p-[10px]">
+                  <div className="w-full h-full aspect-[1/1.5] mb-[20px] relative  flex items-end justify-between ">
                     <Img
                       src={postUrl}
-                      className="rounded-[12px] h-full  w-full top-0 left-0 overflow-hidden bg-center object-cover "
+                      className="rounded-[12px] h-full  w-full top-0 left-0 overflow-hidden bg-center object-center object-cover "
                     />
 
-                    <Rating rating={item.vote_average.toFixed(1)} />
+                    <Rating classCarousel=" bg-white absolute bottom-[-15px]  left-[20px]  h-[43px] w-[43px] min-[768px]:w-[53px] min-[768px]:h-[53px] flex justify-center items-center" rating={item.vote_average.toFixed(1)} />
                     <Genre 
-                      classNamecarousel="flex-col"
+                      classNamecarousel="flex-col absolute bottom-[20px] right-[20px] hidden justify-end min-[768px]:flex  flex-wrap"
                       data={item?.genre_ids?.slice(0, 2)}
                       
                     />
