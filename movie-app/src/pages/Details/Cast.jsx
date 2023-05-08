@@ -13,7 +13,7 @@ const Cast = ({ data, loading }) => {
         <div className="text-[24px] text-white mb-[25px]">Cast</div>
        
         {!loading && (
-          <div className="flex r gap-[20px]  w-full overflow-y-scroll  min-[768px]:overflow-y-hidden mx-[-20px] px-[20px] min-[768px]:m-0 min-[768px]:p-0 items-center">
+          <div className="flex h-full gap-[20px]  w-full overflow-y-scroll  min-[768px]:overflow-y-hidden mx-[-20px] px-[20px] min-[768px]:m-0 min-[768px]:p-0 ">
             {data?.map((actor) => {
               let profile = actor?.profile_path
                 ? url.profile + actor?.profile_path
