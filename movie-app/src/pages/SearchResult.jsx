@@ -29,7 +29,7 @@ export default function SearchResult() {
   const skeleton = () => {
     return (
       <div className="w-[125px] min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] shrink-0 ] ">
-        <div className="rounded-[12px] w-full aspect-[1/1.5] mb-[30px] skeleton  "></div>
+        {/* <div className="rounded-[12px] w-full aspect-[1/1.5] mb-[30px] skeleton  "></div> */}
         <div className="flex flex-col">
           <div className="w-full h-[20px] mb-[10px] skeleton "></div>
           <div className="w-[75%] h-[20px] skeleton animate-pulse"></div>
@@ -43,50 +43,67 @@ export default function SearchResult() {
       (res)=>{
         setData(res)
         setLoading(false)
-        setPageNum((prev)=>prev+1)
+        setPageNum(pageNum+1)
       })
   }
 
+//   fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
+//     (res)=>{
+      
+//  const m =       {
+//           ...data?.data,
+//              results:[...data?.data?.results,...res?.data?.results]
+//         };
+//         setNextdata(m)
+//     //  console.log(m)
+//     })
+//     // console.log(nextdata)
+//     setData(nextdata)
   const fetchNextPage=()=>{
     setLoading(true)
     fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res)=>{
-        setNextdata(res)
-        if(data?.results){
-          setData({
+        setLoading(false)
+        
+        if(data?.data?.results){
+       const a=   {
             ...data?.data,
-               results:[...data?.data?.results,...res?.data?.results]
-          });
+            results:[...data?.data?.results,...res?.data?.results]
+          };
+          setData(a)
+          setNextdata(a)
+          
         }else{
           setData(res?.data)
         }
-        setPageNum((prev) => prev + 1);
+        setPageNum( pageNum+1);
       })
-    
-  }
-  console.log(data)
-  // console.log(data)
+    }
+    // console.log(nextdata)
+  
     useEffect(() => {
       setPageNum(1);
       fetchInitialPage();
   }, [query]);
 
-  
+  const info = nextdata ? data?.results:data?.data?.results
+ info?.map((item,index)=>console.log(item?.poster_path + index))
   return (
+    
     <div className="max-w-[1200px] w-full px-[20px] mx-auto min-[768px]:pt-[120px]  pt-[60px] ">
       {loading&&<Spinner/>}
       {!loading ? (<> 
            <div className="text-white text-[18px] mb-[15px]">{`Showing ${Search?.length<=1?"result":"results"} for "${query}" `}</div>
           <div
             // ref={CarouselContainer}
-            className="w-full h-full"
+            className="w-full h-full  mr-[-20px] ml-[-20px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
           >
-              {data?.data?.results?.length >0 ?(
+              {info?.length >0 ?(
               <InfiniteScroll
-              className="flex gap-[20px] justify-center  flex-wrap mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0 items-center h-full"
-              dataLength={data?.results?.length || []}
+              className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px]"
+              dataLength={data?.length || []}
               next={fetchNextPage}
-              hasMore={pageNum <= data?.total_pages}
+              hasMore={pageNum <= data?.data?.total_pages}
               loader={<Spinner />}
               >
               {data?.data?.results?.map((item) => {
@@ -107,7 +124,7 @@ export default function SearchResult() {
                         className="rounded-[12px] h-full  w-full top-0 left-0 overflow-hidden bg-center object-center object-cover "
                       />
                       <div className="flex justify-between">
-                      <Rating classCarousel=" bg-white absolute bottom-[-15px]  left-[20px]  h-[43px] w-[43px] min-[768px]:w-[53px] min-[768px]:h-[53px] flex justify-center items-center max-[768px]:hidden" rating={item?.vote_average?.toFixed(1)} />
+                      {item?.vote_average&&<Rating classCarousel=" bg-white absolute bottom-[-15px]  left-[20px]  h-[43px] w-[43px] min-[768px]:w-[53px] min-[768px]:h-[53px] flex justify-center items-center max-[768px]:hidden" rating={item?.vote_average?.toFixed(1)} />}
                       <Genre 
                         classNamecarousel="flex-col absolute bottom-[20px] right-[20px] hidden justify-end min-[912px]:flex  flex-wrap  "
                         data={item?.genre_ids?.slice(0, 2)}
@@ -126,7 +143,8 @@ export default function SearchResult() {
                   
                   );
                 })}
-                </InfiniteScroll>):(<div className=" w-full text-[25px] text-white font-medium text-center"> Sorry the searched movie/Tvshow couldn't be found</div>)}
+                </InfiniteScroll>):(<div className=" w-full text-[25px] text-white font-medium text-center"> {`sorry no results found for "${query}"`}
+                </div>)}
           </div></>):(<div className="flex gap-[10px] overflow-y-hidden  mx-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0">
             {skeleton()}
             {skeleton()}

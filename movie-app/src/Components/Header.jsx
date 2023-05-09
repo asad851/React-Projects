@@ -105,7 +105,8 @@ const Header = () => {
     >
       <div>
         <img
-          onClick={() => navigate("/")}
+          onClick={() => {navigate("/")
+          setShowMobileMenu(false)}}
           className={`w-[150px] cursor-pointer ${
             showMobileMenu ? "absolute top-[-45px] left-[20px]" : ""
           } `}
@@ -170,9 +171,9 @@ const Header = () => {
       </div>
 
       {showSearch && (
-        <div className="w-full flex items-center justify-center absolute  right-0 top-[70px] max-w-[1370px]  px-[20px] ">
+        <div className="w-full flex items-center justify-center absolute  right-0 top-[70px] max-w-[1370px] focus:outline-0 focus:ring-transparent focus:border-none px-[20px] ">
           <input
-            className=" h-[35px] min-[768px]:h-[50px] max-w-[1200px]  w-full rounded-[35px] text-slate-700 focus:outline-none focus:border-none text-[14px] pl-[20px]"
+            className=" h-[35px] min-[768px]:h-[50px] max-w-[1200px]  w-full rounded-[35px] text-slate-700 focus:outline-0 focus:ring-inherit focus:border-inherit text-[14px] pl-[20px]"
             type="search"
             name=""
             id=""
