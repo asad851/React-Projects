@@ -17,13 +17,14 @@ import { fetchData } from "../Api";
 
 export default function SearchResult() {
   const [loading , setLoading] = useState(false)
-  const [data, setData] = useState([])
+  const [data, setData] = useState(null)
+  const [nextdata, setNextdata] = useState(null)
   const [pageNum, setPageNum] = useState(1)
   const { query } = useParams();
   const navigate = useNavigate()
   // 
   const {url} = useSelector((state)=>state.home)
-  console.log(data?.data)
+  // console.log(data)
   const Search =data?.data?.results
   const skeleton = () => {
     return (
@@ -40,7 +41,7 @@ export default function SearchResult() {
     setLoading(true)
     fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res)=>{
-        setData(res?.data)
+        setData(res)
         setLoading(false)
         setPageNum((prev)=>prev+1)
       })
@@ -50,15 +51,21 @@ export default function SearchResult() {
     setLoading(true)
     fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res)=>{
+        setNextdata(res)
         if(data?.results){
-          setData([...data,...res?.data]);
+          setData({
+            ...data?.data,
+               results:[...data?.data?.results,...res?.data?.results]
+          });
         }else{
           setData(res?.data)
         }
         setPageNum((prev) => prev + 1);
       })
+    
   }
-  
+  console.log(data)
+  // console.log(data)
     useEffect(() => {
       setPageNum(1);
       fetchInitialPage();
@@ -74,14 +81,15 @@ export default function SearchResult() {
             // ref={CarouselContainer}
             className="w-full h-full"
           >
-              {data?.results?.length<0?(<InfiniteScroll
+              {data?.data?.results?.length >0 ?(
+              <InfiniteScroll
               className="flex gap-[20px] justify-center  flex-wrap mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0 items-center h-full"
               dataLength={data?.results?.length || []}
               next={fetchNextPage}
               hasMore={pageNum <= data?.total_pages}
               loader={<Spinner />}
               >
-              {data?.results?.map((item) => {
+              {data?.data?.results?.map((item) => {
                 const postUrl = item?.poster_path
                   ? url.backdrop + item?.poster_path
                   : noposter;

@@ -60,7 +60,7 @@ export default function Carousel({ data, loading,endpoint }) {
         {!loading ? (
           <div
             ref={CarouselContainer}
-            className="flex gap-[0px] overflow-y-hidden mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0 items-center h-full"
+            className="flex gap-[10px] overflow-y-hidden mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0 items-center h-full"
           >
             {data?.map((item) => {
               const postUrl = item.poster_path
