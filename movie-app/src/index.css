@@ -5,13 +5,14 @@
 body{
     margin:0;
     padding:0;
+    
     font-family: 'Ubuntu', sans-serif;
 }
 .opacitylayer{
     background: linear-gradient(
         180deg,
-        rgba(4,21,45,0) 0%,
-        #04152d 79.19%
+        rgba(18, 30, 68,0) 0%,
+        rgba(15,16,20) 79.19%
         );
 }
 .lazy-load-image-background{
@@ -26,7 +27,7 @@ body{
     font-size: 34px;
     font-weight: 700;
     
-    fill: #04152d;
+    fill: rgba(15,16,20);
 }
 .CircularProgressbar .CircularProgressbar-trail {
     stroke: transparent;
@@ -35,7 +36,7 @@ body{
 .skeleton{
     position: relative;
         overflow: hidden;
-        background-color: #0a2955;
+        background-color: #3b3c3d;
        
     
        
@@ -49,10 +50,10 @@ body{
     transform: translateX(-100%);
     background-image: linear-gradient(
         90deg,
-        rgba(#193763, 0) 0,
-        rgba(#193763, 0.2) 20%,
-        rgba(#193763, 0.5) 60%,
-        rgba(#193763, 0)
+        rgba(#6d6d6d, 0) 0,
+        rgba(#6d6d6d, 0.2) 20%,
+        rgba(#6d6d6d, 0.5) 60%,
+        rgba(#6d6d6d, 0)
     );
     animation: shimmer 2s infinite;
     content: "";

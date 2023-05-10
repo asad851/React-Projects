@@ -22,7 +22,7 @@ export default function SearchResult() {
   const [pageNum, setPageNum] = useState(1)
   const { query } = useParams();
   const navigate = useNavigate()
-  // 
+  
   const {url} = useSelector((state)=>state.home)
   // console.log(data)
   const Search =data?.data?.results
@@ -79,7 +79,7 @@ export default function SearchResult() {
         setPageNum( pageNum+1);
       })
     }
-    // console.log(nextdata)
+    
   
     useEffect(() => {
       setPageNum(1);
@@ -90,23 +90,23 @@ export default function SearchResult() {
  info?.map((item,index)=>console.log(item?.poster_path + index))
   return (
     
-    <div className="max-w-[1200px] w-full px-[20px] mx-auto min-[768px]:pt-[120px]  pt-[60px] ">
+    <div className="max-w-[1200px] w-full px-[20px] mx-auto min-[768px]:pt-[120px]  pt-[60px] mb-[60px]">
       {loading&&<Spinner/>}
       {!loading ? (<> 
-           <div className="text-white text-[18px] mb-[15px]">{`Showing ${Search?.length<=1?"result":"results"} for "${query}" `}</div>
+           <div className="text-white text-[18px] mb-[15px]">{`Showing  ${Search?.length<=1?"result":"results"} for "${query}" `}</div>
           <div
             // ref={CarouselContainer}
-            className="w-full h-full  mr-[-20px] ml-[-20px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
+            className="w-full h-full  px-[20px] min-[768px]:m-0 min-[768px]:p-0 mx-auto "
           >
-              {info?.length >0 ?(
+              {data?.data?.results?.length >0 ?(
               <InfiniteScroll
-              className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px]"
+              className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
               dataLength={data?.length || []}
-              next={fetchNextPage}
+              next={()=>fetchNextPage()}
               hasMore={pageNum <= data?.data?.total_pages}
               loader={<Spinner />}
               >
-              {data?.data?.results?.map((item) => {
+              {info?.map((item) => {
                 const postUrl = item?.poster_path
                   ? url.backdrop + item?.poster_path
                   : noposter;

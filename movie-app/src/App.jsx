@@ -32,7 +32,7 @@ import Footer from './Components/Footer'
       testApi()
       handleGenre()
     }, [])
-     document.body.style.backgroundColor="#04152d"
+     document.body.style.backgroundColor="rgb(15, 16, 20)"
      
      const handleGenre = async() =>{
       const genreData = []

@@ -5,6 +5,7 @@ import { SlMenu } from "react-icons/sl";
 import { HiOutlineSearch } from "react-icons/hi";
 import { VscChromeClose } from "react-icons/vsc";
 import icon from "../assets/Tvpedia.svg";
+import useFetch from "../Hooks/useFetch";
 
 
 const Header = () => {
@@ -29,7 +30,7 @@ const Header = () => {
       }
     }
   };
-
+  
   const openMenu = () => {
     setShowMobileMenu(true);
     setshowSearch(false);
@@ -71,7 +72,7 @@ const Header = () => {
 
   const top = ` backdrop-blur-[3.5px]  bg-[rgba(0,0,0,0.25)]`;
   const hide = "transform translate-y-[-60px]";
-  const show = "bg-[#020c1b]";
+  const show = "bg-[rgb(10,10,14)]";
 
   const handleScroll = () => {
     if (window.scrollY > 200) {
@@ -100,7 +101,7 @@ const Header = () => {
     <header
       className={` w-full flex justify-between items-center h-[60px] px-[20px] fixed transform 
      translate-y-0 transition-all delay-[0.15s] ease-linear z-[2]    ${
-        showMobileMenu ? " flex-col bg-[#04152d]" :  `${Class?`${Class}`:"backdrop-blur-[3.5px]  bg-[rgba(0,0,0,0.25)]"}`
+        showMobileMenu ? " flex-col bg-[rgb(15,16,20)]" :  `${Class?`${Class}`:"backdrop-blur-[3.5px]  bg-[rgba(0,0,0,0.25)]"}`
       } `}
     >
       <div>
@@ -131,11 +132,11 @@ const Header = () => {
       <div
         className={` transition-[top] delay-[0.3s] ease-linear w-full fixed ${
           showMobileMenu ? "top-[60px] " : "top-[-120px]"
-        } right-0 left-0 border-t-[1px] min-[768px]:hidden border-t-white`}
+        } right-0 left-0 border-t-[0.5px] min-[768px]:hidden border-t-white`}
       >
         <ul
           id="drawer-top-example"
-          className={`flex flex-col items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white   bg-[#04152d] w-full divide-y-[1px] divide-white `}
+          className={`flex flex-col items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white   bg-[rgba(15,16,20)] w-full divide-y-[0.5px] divide-white `}
         >
           <li
             className={`cursor-pointer  h-[40px] w-full flex justify-center items-center hover:text-gray-400`}

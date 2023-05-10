@@ -9,11 +9,11 @@ import {
 const listStyle =
   "transition-all ease-linear duration-300 text-[16px] min-[768px]:text-[16px] hover:text-[#da2f68] max-[350px]:text-[12px]";
 const iconStyle =
-  "w-[50px] h-[50px] rounded-[50%]  bg-[#04152d] flex items-center justify-center pointer transition-all ease-linear duration-300 hover:shadow-[0_0_0.625em_#da2f68] text-[#ffffff] ";
+  "w-[50px] h-[50px] rounded-[50%]  bg-[rgba(9,12,20)] flex items-center justify-center pointer transition-all ease-linear duration-300 hover:shadow-[0_0_0.625em_#da2f68] text-[#ffffff] ";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#020c1b] py-[50px] text-white relative ">
+    <footer className="bg-[rgb(21, 21, 20)]  shadow-[0_-4px_5px_-6px_rgba(255,255,255)]  py-[50px] text-white relative">
       <div className="flex items-center flex-col">
         <ul className="flex items-center judtify-center gap-[10px] list-none mb-[20px] min-[768px]:mb-[30px] min-[768px]:gap-[30px] ">
           <li className={listStyle}>Terms Of Use</li>
