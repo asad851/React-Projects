@@ -11,10 +11,10 @@ import Explore from './pages/Explore'
 import PageNotFound from './pages/PageNotFound'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
-
+const [num, setNum] = useState(null)
   
   
-  function App() {
+  function App(props) {
     const dispatch = useDispatch()
     const testApi =()=>{
       fetchData("/configuration")
@@ -49,13 +49,16 @@ import Footer from './Components/Footer'
       
        dispatch(getGenre(allgenre))
      }
+     const openSearch=()=>{
+      setNum(1)
+     }
   return (
     <>
-    <Header/> 
+    <Header openSearch={openSearch}/> 
     <Routes>
       <Route path='/' element={<HomePage/>} />
       <Route path='/:mediaType/:id' element={<Details/>} />
-      <Route path='/search/:query' element={<SearchResult/>} />
+      <Route path='/search/:query' element={<SearchResult num={num} />} />
       <Route path='/explore/:mediaType' element={<Explore/>} />
       <Route path='*' element={<PageNotFound/>} />
     </Routes>

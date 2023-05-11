@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SlMenu } from "react-icons/sl";
@@ -8,7 +8,8 @@ import icon from "../assets/Tvpedia.svg";
 import useFetch from "../Hooks/useFetch";
 
 
-const Header = () => {
+
+const Header = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [Class, setClass] = useState("");
@@ -17,7 +18,7 @@ const Header = () => {
   const [lastscrollY, setLastScrollY] = useState(0);
   const [query, setQuery] = useState("");
   const [clicks, setClicks] = useState(1);
-
+  const inputRef = useRef(null);
   const openSearch = (e) => {
     setshowSearch(true);
     setShowMobileMenu(false);
@@ -46,6 +47,7 @@ const Header = () => {
     setShowMobileMenu(false);
   };
   const searchQueryHandler = (e) => {
+    inputRef.current.focus();
     e.preventDefault();
     if (e.key === "Enter" && query.length > 0) {
       navigate(`/search/${query}`);
@@ -181,6 +183,8 @@ const Header = () => {
             placeholder="Movies, shows and more..."
             onChange={(e) => setQuery(e.target.value)}
             onKeyUp={searchQueryHandler}
+            ref={inputRef}
+            autoFocus
           />
         </div>
       )}

@@ -15,7 +15,7 @@ import { fetchData } from "../Api";
 
 
 
-export default function SearchResult() {
+export default function SearchResult({num}) {
   const [loading , setLoading] = useState(false)
   const [data, setData] = useState(null)
   const [nextdata, setNextdata] = useState(null)
@@ -37,13 +37,14 @@ export default function SearchResult() {
       </div>
     );
   };
+  
   const fetchInitialPage=()=>{
     setLoading(true)
     fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res)=>{
         setData(res)
         setLoading(false)
-        setPageNum(pageNum+1)
+        setPageNum((prev)=>prev+1)
       })
   }
 
@@ -60,14 +61,15 @@ export default function SearchResult() {
 //     // console.log(nextdata)
 //     setData(nextdata)
   const fetchNextPage=()=>{
-    setLoading(true)
+    
     fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res)=>{
-        setLoading(false)
+        let meta =data?.data?.results
         
-        if(data?.data?.results){
-       const a=   {
+        if(meta){
+       let a = {
             ...data?.data,
+            // results:data?.data?.results.concat(res?.data?.results)
             results:[...data?.data?.results,...res?.data?.results]
           };
           setData(a)
@@ -76,34 +78,37 @@ export default function SearchResult() {
         }else{
           setData(res?.data)
         }
-        setPageNum( pageNum+1);
+        setPageNum((prev)=>prev+1);
       })
     }
     
-  
+  // console.log(nextdata)
     useEffect(() => {
       setPageNum(1);
+      navigate(`/search/${query}`)
       fetchInitialPage();
   }, [query]);
-
-  const info = nextdata ? data?.results:data?.data?.results
- info?.map((item,index)=>console.log(item?.poster_path + index))
+  console.log(data)
+  // const info =  data?.results||data?.data?.results
+  const info = nextdata?data?.results:data?.data?.results
+  const infodata = nextdata?data:data?.data
+//  info?.map((item,index)=>console.log(item?.poster_path + index))
   return (
     
     <div className="max-w-[1200px] w-full px-[20px] mx-auto min-[768px]:pt-[120px]  pt-[60px] mb-[60px]">
       {loading&&<Spinner/>}
       {!loading ? (<> 
-           <div className="text-white text-[18px] mb-[15px]">{`Showing  ${Search?.length<=1?"result":"results"} for "${query}" `}</div>
+           <div className="text-white text-[18px] mb-[15px]">{`Showing  ${info?.length<=1?"result":"results"} for "${query}" `}</div>
           <div
-            // ref={CarouselContainer}
+            
             className="w-full h-full  px-[20px] min-[768px]:m-0 min-[768px]:p-0 mx-auto "
           >
-              {data?.data?.results?.length >0 ?(
+              {/* {info?.length>0 ?( */}
               <InfiniteScroll
               className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
-              dataLength={data?.length || []}
-              next={()=>fetchNextPage()}
-              hasMore={pageNum <= data?.data?.total_pages}
+              dataLength={infodata?.length ||[]}
+              next={fetchNextPage}
+              hasMore={pageNum<=infodata?.total_pages}
               loader={<Spinner />}
               >
               {info?.map((item) => {
@@ -143,9 +148,12 @@ export default function SearchResult() {
                   
                   );
                 })}
-                </InfiniteScroll>):(<div className=" w-full text-[25px] text-white font-medium text-center"> {`sorry no results found for "${query}"`}
-                </div>)}
-          </div></>):(<div className="flex gap-[10px] overflow-y-hidden  mx-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0">
+                </InfiniteScroll>
+                {/* :(<div className=" w-full text-[25px] text-white font-medium text-center"> {`sorry no results found for "${query}"`}
+                </div>) */}
+                {/* } */}
+          </div></>):
+          (<div className="flex gap-[10px] overflow-y-hidden  mx-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0">
             {skeleton()}
             {skeleton()}
             {skeleton()}

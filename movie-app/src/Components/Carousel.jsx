@@ -47,7 +47,7 @@ export default function Carousel({ data, loading,endpoint }) {
 
   return (
     <div className="mb-[50px]">
-      {/* <div>{data?.title&& <div> {data?.title}</div>}</div> */}
+      <div>{data?.title&& <div> {data?.title}</div>}</div>
       <div className="relative max-w-[1200px] px-[20px] mx-auto w-full ">
         <BsFillArrowLeftCircleFill
           className="absolute top-[44%] text-black text-[30px] z-[1] rounded-[50%] border-none cursor-pointer translate-y-[50%] opacity-[0.5] hover:opacity-[0.6]  fill-white left-[30px]  hidden min-[768px]:block "
