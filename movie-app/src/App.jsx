@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import {fetchData} from './Api'
 import { useDispatch } from "react-redux"
 import {getApiConfig, getGenre} from './store/homeSlicer'
@@ -11,7 +11,7 @@ import Explore from './pages/Explore'
 import PageNotFound from './pages/PageNotFound'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
-const [num, setNum] = useState(null)
+
   
   
   function App(props) {
@@ -27,7 +27,8 @@ const [num, setNum] = useState(null)
             dispatch(getApiConfig(url))
            
           })
-    }
+        }
+        
     useEffect(() => {
       testApi()
       handleGenre()
@@ -49,16 +50,15 @@ const [num, setNum] = useState(null)
       
        dispatch(getGenre(allgenre))
      }
-     const openSearch=()=>{
-      setNum(1)
-     }
+     
+     
   return (
     <>
-    <Header openSearch={openSearch}/> 
+    <Header /> 
     <Routes>
       <Route path='/' element={<HomePage/>} />
       <Route path='/:mediaType/:id' element={<Details/>} />
-      <Route path='/search/:query' element={<SearchResult num={num} />} />
+      <Route path='/search/:query' element={<SearchResult   />} />
       <Route path='/explore/:mediaType' element={<Explore/>} />
       <Route path='*' element={<PageNotFound/>} />
     </Routes>

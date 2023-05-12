@@ -37,16 +37,18 @@ export default function SearchResult({num}) {
       </div>
     );
   };
-  
+  console.log(num)
   const fetchInitialPage=()=>{
     setLoading(true)
     fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res)=>{
+        
         setData(res)
         setLoading(false)
         setPageNum((prev)=>prev+1)
       })
   }
+    
 
 //   fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
 //     (res)=>{
@@ -84,7 +86,8 @@ export default function SearchResult({num}) {
     
   // console.log(nextdata)
     useEffect(() => {
-      setPageNum(1);
+      setPageNum(1)
+      setData(null)
       navigate(`/search/${query}`)
       fetchInitialPage();
   }, [query]);
@@ -107,7 +110,7 @@ export default function SearchResult({num}) {
               <InfiniteScroll
               className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
               dataLength={infodata?.length ||[]}
-              next={fetchNextPage}
+              next={()=>fetchNextPage()}
               hasMore={pageNum<=infodata?.total_pages}
               loader={<Spinner />}
               >
@@ -140,9 +143,9 @@ export default function SearchResult({num}) {
                       <span className="text-[16px] text-white  mb-[10] leading-[24px] min-[768px]:text-[20px] truncate">
                         {item?.title || item?.name}
                       </span>
-                      <span className="text-[13px] opacity-[0.5]">
-                        {dayjs(item?.release_Date).format("D MMM, YYYY")}
-                      </span>
+                      {item?.release_date?<span className="text-[13px] opacity-[0.5]">
+                        {dayjs(item?.release_date).format("D MMM, YYYY")}
+                      </span>:<span className="text-[13px] opacity-[0.5]">date unknown</span>}
                     </div>
                   </div>
                   

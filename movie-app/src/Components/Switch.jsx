@@ -25,7 +25,7 @@ export default function Switch({  onSwitch ,category}) {
           </span>
         ))}
         <span
-          className="h-[30px] w-[100px] rounded-[20px] bg-gradient-to-br from-pink-500 to-orange-400 absolute left-0 transition-[left] duration ease-[cubic-bezier(0.88,-0.35,0.565,1.35)]"
+          className="h-[30px] w-[100px] rounded-[20px] bg-gradient-to-br from-pink-500 to-orange-400 absolute left-0 transition-[left] duration-200 ease-[cubic-bezier(0.88,-0.35,0.565,1.35)]"
           style={{ left }}
         ></span>
       </div>

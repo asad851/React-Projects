@@ -32,7 +32,7 @@ export default function Carousel({ data, loading,endpoint }) {
     });
   };
   
- 
+//  console.log(data)
   const skeleton = () => {
     return (
       <div className="w-[125px] min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] shrink-0 ] ">
@@ -89,10 +89,10 @@ export default function Carousel({ data, loading,endpoint }) {
                   </div>
                   <div className="flex text-white flex-col ">
                     <span className="text-[16px] text-white  mb-[10] leading-[24px] min-[768px]:text-[20px] truncate">
-                      {item.title || item.name}
+                      {item?.title || item?.name}
                     </span>
                     <span className="text-[13px] opacity-[0.5]">
-                      {dayjs(item.release_Date).format("D MMM, YYYY")}
+                      {dayjs(item?.release_date).format("D MMM, YYYY")}
                     </span>
                   </div>
                 </div>

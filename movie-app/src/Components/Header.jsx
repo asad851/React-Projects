@@ -9,7 +9,7 @@ import useFetch from "../Hooks/useFetch";
 
 
 
-const Header = (props) => {
+const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [Class, setClass] = useState("");
@@ -17,14 +17,16 @@ const Header = (props) => {
   const [showSearch, setshowSearch] = useState("");
   const [lastscrollY, setLastScrollY] = useState(0);
   const [query, setQuery] = useState("");
+  const [num, setNum] = useState(0);
   const [clicks, setClicks] = useState(1);
   const inputRef = useRef(null);
-  const openSearch = (e) => {
+  const openSearch = () => {
     setshowSearch(true);
     setShowMobileMenu(false);
     setClicks(clicks + 1);
+    setNum(1)
 
-    console.log(clicks);
+   
     for (let n = 1; n < 100; n++) {
       if (clicks === 2 * n) {
         setshowSearch(false);
