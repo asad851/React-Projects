@@ -12,7 +12,7 @@ import Rating from "./Rating";
 import Genre from "./Genre";
 import "../index.css";
 
-export default function Carousel({ data, loading,endpoint }) {
+export default function Carousel({ data, loading,endpoint,title }) {
   const CarouselContainer = useRef();
   const genrebox = useRef()
   const { url } = useSelector((state) => state.home);
@@ -47,6 +47,8 @@ export default function Carousel({ data, loading,endpoint }) {
 
   return (
     <div className="mb-[50px]">
+      {title&&<div className="text-white text-[24px] font-medium mb-[10px] max-w-[1200px] w-full px-[20px]
+      mx-auto ">{title}</div>}
       <div>{data?.title&& <div> {data?.title}</div>}</div>
       <div className="relative max-w-[1200px] px-[20px] mx-auto w-full ">
         <BsFillArrowLeftCircleFill

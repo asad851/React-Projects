@@ -3,6 +3,8 @@ import DetailsBanner from './DetailsBanner'
 import { useParams } from 'react-router-dom';
 import useFetch from '../../Hooks/useFetch';
 import Cast from './Cast';
+import Similar from './Similar';
+import Recommendation from './Recommendation';
 
 
 
@@ -20,6 +22,8 @@ export default function Details() {
     <>
     <DetailsBanner crew={credits?.data?.crew} />
     <Cast  data={credits?.data?.cast} loading={creditsLoading}/>
+    <Similar media={mediaType} id={id}/>
+    <Recommendation media={mediaType} id={id} />
     
     </>
     
