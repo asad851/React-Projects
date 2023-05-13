@@ -25,11 +25,11 @@ export default function SearchResult({num}) {
   
   const {url} = useSelector((state)=>state.home)
   // console.log(data)
-  const Search =data?.data?.results
+  
   const skeleton = () => {
     return (
       <div className="w-[125px] min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] shrink-0 ] ">
-        {/* <div className="rounded-[12px] w-full aspect-[1/1.5] mb-[30px] skeleton  "></div> */}
+        <div className="rounded-[12px] w-full aspect-[1/1.5] mb-[30px] skeleton  "></div>
         <div className="flex flex-col">
           <div className="w-full h-[20px] mb-[10px] skeleton "></div>
           <div className="w-[75%] h-[20px] skeleton animate-pulse"></div>
@@ -37,7 +37,7 @@ export default function SearchResult({num}) {
       </div>
     );
   };
-  console.log(num)
+ 
   const fetchInitialPage=()=>{
     setLoading(true)
     fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
