@@ -22,7 +22,7 @@ export default function Details() {
     <>
     <DetailsBanner crew={credits?.data?.crew} />
     <Cast  data={credits?.data?.cast} loading={creditsLoading}/>
-    <Similar media={mediaType} id={id}/>
+    <Similar mediaType={mediaType} id={id}/>
     <Recommendation media={mediaType} id={id} />
     
     </>

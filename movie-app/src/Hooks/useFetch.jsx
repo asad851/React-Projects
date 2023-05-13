@@ -3,7 +3,7 @@ import { useState,useEffect } from "react";
 
 
 
-export default function useFetch(url) {
+export default function useFetch(url,params) {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(null)
     const [error, setError] = useState(null)
@@ -12,7 +12,7 @@ export default function useFetch(url) {
          setLoading('loading...')
          setError(null);
          setData(null);
-       fetchData(url)
+       fetchData(url,params)
         .then((res)=>{
            setData(res);
            setLoading(false);

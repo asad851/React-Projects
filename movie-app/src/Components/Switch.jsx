@@ -7,7 +7,7 @@ export default function Switch({  onSwitch ,category}) {
     setleft(index * 100);
     setTimeout(() => {
       setSelected(index);
-    }, 300);
+    }, 200);
     onSwitch(tab, index);
   };
   return (
@@ -17,7 +17,7 @@ export default function Switch({  onSwitch ,category}) {
           <span
             key={index}
             className={`w-[100px] font-semibold h-full rounded-[20px] flex items-center  text-[14px] z-[1] cursor-pointer transition-colors ease-linear duration-300 justify-center ${
-              selected === index ? "text-white" : "text-[#04152d]"
+              selected === index ? "text-white" : "text-[rgba(15,16,21)]"
             } `}
             onClick={() => activeSwitch(tab, index)}
           >

@@ -7,14 +7,14 @@ import { Routes,Route } from 'react-router-dom'
 import HomePage from './pages/Home/HomePage'
 import Details from './pages/Details/Details'
 import SearchResult from './pages/SearchResult'
-import Explore from './pages/Explore'
+import Explore from './pages/Explore/Explore'
 import PageNotFound from './pages/PageNotFound'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 
   
   
-  function App(props) {
+  function App() {
     const dispatch = useDispatch()
     const testApi =()=>{
       fetchData("/configuration")

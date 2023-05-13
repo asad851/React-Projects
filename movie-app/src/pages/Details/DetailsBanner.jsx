@@ -51,7 +51,7 @@ export default function DetailsBanner({ crew }) {
                 >
                   <div id="leftContent" className="shrink-0">
                     <Img
-                      className="w-full block rounded-[12px] min-[768px]:max-w-[350px]"
+                      className="w-full block rounded-[12px] min-[768px]:max-w-[350px] mt-[10px]"
                       src={moviedata?.poster_path ? background : noposter}
                     />
                   </div>
@@ -74,7 +74,7 @@ export default function DetailsBanner({ crew }) {
                       className="flex  justify-start gap-[20px] mt-[20px] mb-[20px]"
                     >
                       <Rating
-                        className="max-w-[70px] max-h-[70px] bg-[#041226] min-[768px]:max-w-[90px] min-[768px]:max-h-[90px] flex justify-center items-center fill-white   "
+                        className="max-w-[70px] max-h-[70px] bg-[rgba(10,10,14)] min-[768px]:max-w-[90px] min-[768px]:max-h-[90px] flex justify-center items-center fill-white   "
                         rating={moviedata?.vote_average.toFixed(1)}
                       />
                       <div

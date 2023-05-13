@@ -136,20 +136,20 @@ const Header = () => {
       <div
         className={` transition-[top] delay-[0.3s] ease-linear w-full fixed ${
           showMobileMenu ? "top-[60px] " : "top-[-120px]"
-        } right-0 left-0 border-t-[0.5px] min-[768px]:hidden border-t-white`}
+        } right-0 left-0 border-t-[0.3px] min-[768px]:hidden border-t-[rgba(255,255,255,0.8)]`}
       >
         <ul
           id="drawer-top-example"
-          className={`flex flex-col items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white   bg-[rgba(15,16,20)] w-full divide-y-[0.5px] divide-white `}
+          className={`flex flex-col items-center  text-[15px] min-[768px]:text-[18px] font-semibold text-white   bg-[rgba(15,16,20)] w-full divide-[rgba(255,255,255,0.8)] divide-y-[0.3px] `}
         >
           <li
-            className={`cursor-pointer  h-[40px] w-full flex justify-center items-center hover:text-gray-400`}
+            className={`cursor-pointer text-[20px] py-[10px] h-[50px] w-full flex justify-center items-center hover:text-gray-400`}
             onClick={() => navigateTo("movie")}
           >
             Movies
           </li>
           <li
-            className={`cursor-pointer h-[40px]  w-full flex justify-center items-center hover:text-gray-400`}
+            className={`cursor-pointer text-[20px] h-[50px] py-[10px]  w-full flex justify-center items-center hover:text-gray-400`}
             onClick={() => navigateTo("tv")}
           >
             TvSeries

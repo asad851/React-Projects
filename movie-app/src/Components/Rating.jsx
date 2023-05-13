@@ -6,7 +6,7 @@ export default function Rating({ rating,className,classCarousel }) {
   return (
     <div className={`rounded-[50%]   text-black ${className?className:classCarousel}`}>
       <CircularProgressbar
-        className={`text-[34px] font-[700] fill-[#04152d] relative   shrink-0 rounded-[50%] ${className?"m-[2px] w-[66px] h-[66px] min-[768px]:w-[86px] min-[768px]:h-[86px] bg-[#041226] ":"m-[2px] w-[39px] h-[39px] min-[768px]:w-[49px] min-[768px]:h-[49px] bg-white"}`} 
+        className={`text-[34px] font-[700] fill-[rgba(10,10,14)] relative   shrink-0 rounded-[50%] ${className?"m-[2px] w-[66px] h-[66px] min-[768px]:w-[86px] min-[768px]:h-[86px] bg-[rgba(10,10,14)] ":"m-[2px] w-[39px] h-[39px] min-[768px]:w-[49px] min-[768px]:h-[49px] bg-white"}`} 
         value={rating}
         maxValue={10}
         text={rating}
