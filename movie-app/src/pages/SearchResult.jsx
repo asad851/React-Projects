@@ -9,7 +9,8 @@ import dayjs from "dayjs";
 import noposter from "../assets/no-poster.png"
 import InfiniteScroll from "react-infinite-scroll-component";
 import Spinner from "../Components/Spinner";
-import { fetchData } from "../Api";
+// import { fetchData } from "../Api";
+import {fetchApiData} from "../utils/getApi"
 
 
 
@@ -40,7 +41,7 @@ export default function SearchResult({num}) {
  
   const fetchInitialPage=()=>{
     setLoading(true)
-    fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
+    fetchApiData(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res)=>{
         
         setData(res)
@@ -64,21 +65,19 @@ export default function SearchResult({num}) {
 //     setData(nextdata)
   const fetchNextPage=()=>{
     
-    fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
+    fetchApiData(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res)=>{
-        let meta =data?.data?.results
         
-        if(meta){
+        
+        if(data?.results){
        let a = {
-            ...data?.data,
-            // results:data?.data?.results.concat(res?.data?.results)
-            results:[...data?.data?.results,...res?.data?.results]
-          };
+           ...data,
+              results:[...data?.results,...res?.results]};
           setData(a)
           setNextdata(a)
           
         }else{
-          setData(res?.data)
+          setData(res)
         }
         setPageNum((prev)=>prev+1);
       })
@@ -91,10 +90,13 @@ export default function SearchResult({num}) {
       navigate(`/search/${query}`)
       fetchInitialPage();
   }, [query]);
-  console.log(data)
   // const info =  data?.results||data?.data?.results
-  const info = nextdata?data?.results:data?.data?.results
-  const infodata = nextdata?data:data?.data
+  const info = data?.data?.results||data
+  
+  const infodata = data?.data
+  
+  console.log(data)
+ 
 //  info?.map((item,index)=>console.log(item?.poster_path + index))
   return (
     
@@ -109,12 +111,12 @@ export default function SearchResult({num}) {
               {/* {info?.length>0 ?( */}
               <InfiniteScroll
               className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
-              dataLength={infodata?.length ||[]}
+              dataLength={data?.results || []}
               next={()=>fetchNextPage()}
-              hasMore={pageNum<=infodata?.total_pages}
+              hasMore={pageNum<=data?.total_pages}
               loader={<Spinner />}
               >
-              {info?.map((item) => {
+              {data?.results?.map((item) => {
                 const postUrl = item?.poster_path
                   ? url.backdrop + item?.poster_path
                   : noposter;
