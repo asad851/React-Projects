@@ -5,7 +5,7 @@ import useFetch from "../../Hooks/useFetch";
 import { useParams } from "react-router-dom";
 import GenresModal from "../genresModal";
 import Spinner from "../../Components/Spinner";
-import MediaCard from "../mediaCard";
+
 import { useSelector } from "react-redux";
 import Img from "../../Components/Img";
 import Rating from "../../Components/Rating";
@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { BsFillCaretDownFill } from "react-icons/bs";
 import { VscChromeClose } from "react-icons/vsc";
+import {AiOutlineCloseCircle} from "react-icons/ai"
 
 export default function Explore() {
   const navigate = useNavigate();
@@ -99,22 +100,22 @@ export default function Explore() {
           <div className="w-full h-full  px-[20px] min-[768px]:m-0 min-[768px]:p-0 mx-auto ">
             <div
               onClick={() => setShowModal(true)}
-              className="flex max-[768px]:justify-end items-center mb-[15px] min-[768px]:mb-[25px] text-white gap-[2px] text-[15px] min-[768px]:text-[20px] font-medium cursor-pointer"
+              className="flex max-[768px]:justify-end items-center mb-[15px] min-[768px]:mb-[25px] text-white gap-[2px] text-[15px] min-[768px]:text-[20px] font-medium cursor-pointer mt-[15px]"
             >
               Genre{" "}
               <BsFillCaretDownFill className="min-[768px]:text-[15px] text-[10px]  mt-[5px]" />
             </div>
 
-            <div className="flex gap-[5px] items-center justify-between">
+            <div className="flex gap-[5px] items-center  min-[768px]:justify-between">
               {genre && (
-                <div className="text-white text-[15px] min-[768px]:text-[20px] my-[5] min-[768px]:my-[10px] font-medium">{`showing results for "${genreName}"`}</div>
+                <div className="text-white text-[15px] flex flex-wrap min-[768px]:text-[20px] my-[5] min-[768px]:my-[10px] font-medium"><span>showing results for </span><span>"{genreName}"</span></div>
               )}
               {genre && (
-                <div className="flex py-[2px] justify-between bg-slate-900 items-center h-[20px] gap-[5px] px-[5px] rounded-[8px]">
-                  <span className=" text-white  inline-block ">
+                <div className="pb-[5px] flex max-[768px]:flex-col  bg-slate-900 items-center h-[20px]   rounded-[8px] max-w-[150px] w-full relative">
+                  <span className=" text-white text-[12px] min-[768px]:text-[15px] w-full  inline-block absolute left-[10px] ">
                     {genreName}
                   </span>
-                  <VscChromeClose className="text-white text-[14px] cursor-pointer" onClick={()=>setGenre(null)} />
+                  <AiOutlineCloseCircle className="text-white text-[13px] min-[768px]:text-[15px] cursor-pointer inline-block absolute right-[15px] max-[768px]:top-[3px] " onClick={()=>setGenre(null)} />
                 </div>
               )}
             </div>
