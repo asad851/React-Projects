@@ -11,38 +11,19 @@ import Rating from "./Rating";
 import Genre from "./Genre";
 import ".//..//index.css";
 
-function mediaCard() {
-
-  const skeleton = () => {
-    return (
-      <div className="w-[125px] min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] shrink-0 ] ">
-        <div className="rounded-[12px] w-full aspect-[1/1.5] mb-[30px] skeleton  "></div>
-        <div className="flex flex-col">
-          <div className="w-full h-[20px] mb-[10px] skeleton "></div>
-          <div className="w-[75%] h-[20px] skeleton animate-pulse"></div>
-        </div>
-      </div>
-    );
-  };
+function mediaCard({data,mediaType}) {
+ const navigate =useNavigate()
+  
   return (
-   <div>
+   <div className="mb-[50px]">
 
-     {title&&<div className="text-white text-[24px] font-medium mb-[10px] max-w-[1200px] w-full px-[20px]
-      mx-auto ">{title}</div>}
       
       <div className="relative max-w-[1200px] px-[20px] mx-auto w-full ">
-        <BsFillArrowLeftCircleFill
-          className="absolute top-[44%] text-black text-[30px] z-[1] rounded-[50%] border-none cursor-pointer translate-y-[50%] opacity-[0.5] hover:opacity-[0.6]  fill-white left-[30px]  hidden min-[768px]:block "
-          onClick={() => navigation("left")}
-        />
-        <BsFillArrowRightCircleFill
-          className="absolute top-[44%] text-black text-[30px] z-[1] right-[30px] cursor-pointer translate-y-[50%] opacity-[0.5] hover:opacity-[0.6] hidden min-[768px]:block fill-white"
-          onClick={() => navigation("right")}
-        />
-    {!loading ? (
+       
+    
           <div
             
-            className="flex gap-[10px] overflow-y-hidden mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0 items-center h-full"
+            className="flex gap-[10px] flex-wrap mr-[-20px] ml-[-20px] px-[20px] min-[768px]:gap-[20px]  min-[768px]:m-0 min-[768px]:p-0 items-center h-full"
           >
             {data?.map((item) => {
               const postUrl = item.poster_path
@@ -53,7 +34,7 @@ function mediaCard() {
                   key={item.id}
                   className="w-[125px] cursor-pointer shrink-0 min-[768px]:w-[calc(25%-15px)] lg:w-[calc(20%-16px)] h-full   hover:scale-[0.98] duration-200 ease-linear "
                   onClick={() =>
-                    navigate(`/${item.media_type || endpoint}/${item.id}`)
+                    navigate(`/${item.media_type ||endpoint||mediaType}/${item.id}`)
                   }
                 >
                   <div className="w-full h-full aspect-[1/1.5] mb-[20px] relative  flex items-end justify-between ">
@@ -81,15 +62,7 @@ function mediaCard() {
               );
             })}
           </div>
-        ) : (
-          <div className="flex gap-[10px] overflow-y-hidden  mx-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0">
-            {skeleton()}
-            {skeleton()}
-            {skeleton()}
-            {skeleton()}
-            {skeleton()}
-          </div>
-        )}
+        
    </div>
    </div>
   )

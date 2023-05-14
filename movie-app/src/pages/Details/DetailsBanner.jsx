@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect}from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch";
 import { useSelector } from "react-redux";
@@ -25,8 +25,8 @@ export default function DetailsBanner({ crew }) {
   const producers = crew?.find((crew) => crew.job === "Producer");
   const directors = crew?.find((crew) => crew.job === "Director");
 
-  // console.log(moviedata)
-  // console.log(directors);
+  
+  
   const background = url.backdrop + moviedata?.poster_path;
   return (
     <div className="w-full pt-[100px] mb-[50px] min-[768px]:pt-[120px] min-[768px]:mb-0  min-[768px]:h-[700px]">
@@ -79,7 +79,7 @@ export default function DetailsBanner({ crew }) {
                       />
                       <div
                         id="play"
-                        className="flex items-center gap-[10px] cursor-pointer"
+                        className="flex items-center gap-[20px] cursor-pointer"
                       >
                         <Playbtn />
                         <span className="text text-[20px] transition-all ease-in-out duration-700">
