@@ -11,12 +11,14 @@ export default function HeroBanner() {
   const navigate = useNavigate();
   const { data, loading } = useFetch("/movie/upcoming");
   const { url } = useSelector((state) => state.home);
-
+ 
   useEffect(() => {
-    let bg =
+    
+      let bg =
       url.backdrop +
       data?.data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
     setBackground(bg);
+    
   }, [data]);
 
   const searchQueryHandler = (e) => {
@@ -38,7 +40,7 @@ const handleSubmit=()=>{
         {!loading && (
           <div className="h-[450px ] w-full min-[768px]:h-[700px]  absolute top-0 left-0  opacity-[0.5] overflow-hidden ">
             <Img
-              className=" h-[450px] w-full min-[768px]:h-[700px]   bg-cover bg-center"
+              className=" h-[450px] w-full min-[768px]:h-[700px] transition-all ease-in-out duration-300  bg-cover bg-center"
               src={background}
             />
           </div>

@@ -108,11 +108,11 @@ export default function Explore() {
 
             <div className="flex gap-[5px] items-center  min-[768px]:justify-between">
               {genre && (
-                <div className="text-white text-[15px] flex flex-wrap min-[768px]:text-[20px] my-[5] min-[768px]:my-[10px] font-medium"><span>showing results for </span><span>"{genreName}"</span></div>
+                <div className="text-white text-[15px] flex flex-wrap min-[768px]:text-[20px] my-[5px] min-[768px]:my-[10px] font-medium"><span>showing results for </span><span>"{genreName}"</span></div>
               )}
               {genre && (
-                <div className="pb-[5px] flex max-[768px]:flex-col  bg-slate-900 items-center h-[20px]   rounded-[8px] max-w-[150px] w-full relative">
-                  <span className=" text-white text-[12px] min-[768px]:text-[15px] w-full  inline-block absolute left-[10px] ">
+                <div className="pb-[5px] flex max-[768px]:flex-col  bg-slate-900  h-[20px]   rounded-[8px] max-w-[120px] min-[768px]:max-w-[175px] items-center w-full relative">
+                  <span className=" text-white text-[12px] min-[768px]:text-[15px]  inline-block absolute left-[10px] ">
                     {genreName}
                   </span>
                   <AiOutlineCloseCircle className="text-white text-[13px] min-[768px]:text-[15px] cursor-pointer inline-block absolute right-[15px] max-[768px]:top-[3px] " onClick={()=>setGenre(null)} />
@@ -160,13 +160,13 @@ export default function Explore() {
                       <span className="text-[16px] text-white  mb-[10] leading-[24px] min-[768px]:text-[20px] truncate">
                         {item?.title || item?.name}
                       </span>
-                      {item?.release_date ? (
+                      {item?.release_date||item?.first_air_date ? (
                         <span className="text-[13px] opacity-[0.5]">
-                          {dayjs(item?.release_date).format("D MMM, YYYY")}
+                          {dayjs(item?.release_date||item?.first_air_date).format("D MMM, YYYY")}
                         </span>
                       ) : (
                         <span className="text-[13px] opacity-[0.5]">
-                          date unknown
+                          date unknown {console.log(item)}
                         </span>
                       )}
                     </div>
@@ -179,13 +179,14 @@ export default function Explore() {
             {/* } */}
           </div>
         </>
-      ) : (
-        <div className="flex gap-[10px] overflow-y-hidden  mx-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0">
+      ) : (<div className="w-full h-full  px-[20px] min-[768px]:m-0 min-[768px]:p-0 mx-auto">
+        <div className="flex  gap-[10px] w-full flex-wrap  mx-[-20px] px-[20px] min-[768px]:gap-[20px]  min-[768px]:m-0 min-[768px]:p-0">
           {skeleton()}
           {skeleton()}
           {skeleton()}
           {skeleton()}
           {skeleton()}
+        </div>
         </div>
       )}
     </div>

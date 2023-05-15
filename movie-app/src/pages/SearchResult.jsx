@@ -87,28 +87,21 @@ export default function SearchResult({num}) {
     useEffect(() => {
       setPageNum(1)
       setData(null)
-      navigate(`/search/${query}`)
+      
       fetchInitialPage();
   }, [query]);
-  // const info =  data?.results||data?.data?.results
-  const info = data?.data?.results||data
   
-  const infodata = data?.data
-  
-  console.log(data)
- 
-//  info?.map((item,index)=>console.log(item?.poster_path + index))
   return (
     
     <div className="max-w-[1200px] w-full px-[20px] mx-auto min-[768px]:pt-[120px]  pt-[60px] mb-[60px]">
       {loading&&<Spinner/>}
       {!loading ? (<> 
-           <div className="text-white text-[18px] mb-[15px]">{`Showing  ${info?.length<=1?"result":"results"} for "${query}" `}</div>
+           <div className="text-white text-[18px] mb-[15px]">{`Showing  ${data?.resuts?.length<=1?"result":"results"} for "${query}" `}</div>
           <div
             
             className="w-full h-full  px-[20px] min-[768px]:m-0 min-[768px]:p-0 mx-auto "
           >
-              {/* {info?.length>0 ?( */}
+              {/* {data?.results?.length>0 ?( */}
               <InfiniteScroll
               className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
               dataLength={data?.results || []}
@@ -158,7 +151,7 @@ export default function SearchResult({num}) {
                 </div>) */}
                 {/* } */}
           </div></>):
-          (<div className="flex gap-[10px] overflow-y-hidden  mx-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px]:overflow-hidden min-[768px]:m-0 min-[768px]:p-0">
+          (<div className="flex gap-[10px] flex-wrap   mx-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px] min-[768px]:m-0 min-[768px]:p-0">
             {skeleton()}
             {skeleton()}
             {skeleton()}
