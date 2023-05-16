@@ -106,16 +106,18 @@ export default function Explore() {
               <BsFillCaretDownFill className="min-[768px]:text-[15px] text-[10px]  mt-[5px]" />
             </div>
 
-            <div className="flex gap-[5px] items-center  min-[768px]:justify-between">
+            <div className="flex gap-[5px] items-center  justify-between">
               {genre && (
                 <div className="text-white text-[15px] flex flex-wrap min-[768px]:text-[20px] my-[5px] min-[768px]:my-[10px] font-medium"><span>showing results for </span><span>"{genreName}"</span></div>
               )}
               {genre && (
-                <div className="pb-[5px] flex max-[768px]:flex-col  bg-slate-900  h-[20px]   rounded-[8px] max-w-[120px] min-[768px]:max-w-[175px] items-center w-full relative">
-                  <span className=" text-white text-[12px] min-[768px]:text-[15px]  inline-block absolute left-[10px] ">
+                <div className=" inline-block  bg-slate-900  h-[25px]   rounded-[8px] min-w-[60px]   relative px-[2px] text-center truncate">
+                  <span className="inline-flex items-center justify-center">
+                  <span className=" text-white text-[11px] min-[768px]:text-[15px]   inline-block  min-[768px]:mx-[2px]  truncate  ">
                     {genreName}
                   </span>
-                  <AiOutlineCloseCircle className="text-white text-[13px] min-[768px]:text-[15px] cursor-pointer inline-block absolute right-[15px] max-[768px]:top-[3px] " onClick={()=>setGenre(null)} />
+                  <AiOutlineCloseCircle className="text-white text-[13px] pr-[2px] min-[768px]:text-[15px] cursor-pointer inline-block truncate " onClick={()=>setGenre(null)} />
+                  </span>
                 </div>
               )}
             </div>

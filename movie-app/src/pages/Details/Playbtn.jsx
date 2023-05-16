@@ -1,5 +1,5 @@
 import "./style.css"
-const Playbtn = ()=>{
+const Playbtn = ({height,width})=>{
     
         return (
             <svg
@@ -8,8 +8,8 @@ const Playbtn = ()=>{
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 x="0px"
                 y="0px"
-                width="80px"
-                height="80px"
+                width={width}
+                height={height}
                 viewBox="0 0 213.7 213.7"
                 enableBackground="new 0 0 213.7 213.7"
                 xmlSpace="preserve"

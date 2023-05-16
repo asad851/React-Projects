@@ -1,4 +1,4 @@
-import React ,{useEffect}from "react";
+import React ,{useEffect,useState}from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch";
 import { useSelector } from "react-redux";
@@ -9,12 +9,60 @@ import Genre from "../../Components/Genre";
 import Rating from "../../Components/Rating";
 import "./style.css";
 import Playbtn from "./Playbtn";
+import {VscAdd} from "react-icons/vsc"
 
 export default function DetailsBanner({ crew }) {
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
   const { url } = useSelector((state) => state.home);
-  // console.log(data?.data.poster_path);
+  const[width,Setwidth] = useState("82px")
+  const[height,SetHeight]=useState("82px")
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+  const [clicked, setClicked] = useState(false)
+  const[clicks,SetClicks] =useState(1)
+  const myListObj = {media:mediaType,
+                    id:id}
+  const  myList =[];
+  
+  const handleAddToList=()=>{
+    myList.push(myListObj)
+    SetClicks(clicks+1)
+    
+    for(let i=1; i<=1000; i++){
+        if(clicks===(2*i-1)){
+         setClicked(true)
+        }else if(clicks===2*i){
+          setClicked(false)
+        }
+    }
+    
+    
+  }
+  // console.log(clicked)
+  
+  const handlechnage=(fn)=>{
+     setScreenWidth(window.innerWidth)
+     fn()
+    }
+    
+    const setdimension =()=>{
+      if(screenWidth>=768){
+        SetHeight(height)
+        Setwidth(width)
+      }else{
+        SetHeight("72px")
+        Setwidth("72px")
+      }
+    }
+  // console.log(height,width)
+  useEffect(() => {
+    window.addEventListener("resize",()=>handlechnage(setdimension))
+  
+    return () => {
+      window.removeEventListener("resize",()=>handlechnage(setdimension))
+    }
+  }, [screenWidth])
+  
 
   const moviedata = data?.data;
   const genreName = moviedata?.genres.map((items) => items.id);
@@ -24,7 +72,7 @@ export default function DetailsBanner({ crew }) {
       : `${Math.floor(moviedata?.runtime / 60)}h ${moviedata?.runtime % 60}m`;
   const producers = crew?.find((crew) => crew.job === "Producer");
   const directors = crew?.find((crew) => crew.job === "Director");
-
+  
   
   
   const background = url.backdrop + moviedata?.poster_path;
@@ -71,21 +119,29 @@ export default function DetailsBanner({ crew }) {
                     />
                     <div
                       id="Circlerating"
-                      className="flex  justify-start gap-[20px] mt-[20px] mb-[20px]"
+                      className="flex items-center justify-start gap-[15px] mt-[20px] mb-[20px]"
                     >
                       <Rating
                         className="max-w-[70px] max-h-[70px] bg-[rgba(10,10,14)] min-[768px]:max-w-[90px] min-[768px]:max-h-[90px] flex justify-center items-center fill-white   "
                         rating={moviedata?.vote_average.toFixed(1)}
                       />
                       <div
+                      
                         id="play"
-                        className="flex items-center gap-[20px] cursor-pointer"
+                        className="flex items-center gap-[10px] min-[768px]:gap-[20px] cursor-pointer"
                       >
-                        <Playbtn />
-                        <span className="text text-[20px] transition-all ease-in-out duration-700">
+                        <Playbtn height={height}
+                      width ={width} />
+                        <span className="text-[16px] min-[768px]:text-[20px] transition-all ease-in-out duration-700 hover:text-[rgba(67,137,216)]">
                           Watch Trailer
                         </span>
+                        
+
                       </div>
+                      <div className="flex overflow-hidden flex-wrap  justify-center items-center gap-[10px] cursor-pointer  ">
+                          <VscAdd className={`font-extrabold text-[30px] min-[768px]:text-[40px] transition-[transform] duration-500 ease-in-out ${clicked?"rotate-[135deg] hover:text-red-600":""} hover:text-[rgba(67,137,216)]`}   onClick={handleAddToList}/>
+                          <span className="text-[16px]  min-[768px]:text-[20px] transition-colors ease-in duration-500 ">{clicked?"Remove":"Add"}</span>
+                        </div>
                     </div>
                     <div>
                       <div className="">

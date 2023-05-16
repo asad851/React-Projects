@@ -12,6 +12,7 @@ export default function HeroBanner() {
   const { data, loading } = useFetch("/movie/upcoming");
   const { url } = useSelector((state) => state.home);
  
+  
   useEffect(() => {
     
       let bg =
