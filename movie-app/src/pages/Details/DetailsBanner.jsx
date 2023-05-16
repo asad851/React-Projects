@@ -1,4 +1,4 @@
-import React ,{useEffect,useState}from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch";
 import { useSelector } from "react-redux";
@@ -9,60 +9,78 @@ import Genre from "../../Components/Genre";
 import Rating from "../../Components/Rating";
 import "./style.css";
 import Playbtn from "./Playbtn";
-import {VscAdd} from "react-icons/vsc"
+import { VscAdd } from "react-icons/vsc";
+import { useDispatch } from "react-redux";
+import { addToList,remove } from "../../store/MyListSlicer";
+
 
 export default function DetailsBanner({ crew }) {
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
   const { url } = useSelector((state) => state.home);
-  const[width,Setwidth] = useState("82px")
-  const[height,SetHeight]=useState("82px")
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
-  const [clicked, setClicked] = useState(false)
-  const[clicks,SetClicks] =useState(1)
-  const myListObj = {media:mediaType,
-                    id:id}
-  const  myList =[];
+  const [width, Setwidth] = useState("82px");
+  const [height, SetHeight] = useState("82px");
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [clicked, setClicked] = useState(false);
   
-  const handleAddToList=()=>{
-    myList.push(myListObj)
-    SetClicks(clicks+1)
+  const [right, setRight] = useState("-250px")
+  const myListObj = { media: mediaType, id: id };
+  const {myListArr} = useSelector(state=>state.mylist)
+  const dispatch =useDispatch()
+  const handleAddToList = () => {
+    setClicked(clicked?false:true)
     
-    for(let i=1; i<=1000; i++){
-        if(clicks===(2*i-1)){
-         setClicked(true)
-        }else if(clicks===2*i){
+    if(clicked){
+     
+      dispatch(remove(myListObj.id))
+    }else if(!clicked){
+      dispatch(addToList(myListObj))
+    }
+    setRight("20px")
+    setTimeout(() => {
+      setRight("-250px")
+    }, 2500);
+    
+  };
+  console.log(myListArr)
+  const handlechnage = (fn) => {
+    setScreenWidth(window.innerWidth);
+    fn();
+  };
+
+  const ab = myListArr?.find(list=>list.id===myListObj.id)
+ 
+  console.log(ab)
+
+  function AddedOrNot(){
+    if(ab){
+          setClicked(true)
+        }else{
           setClicked(false)
         }
-    }
-    
-    
   }
-  // console.log(clicked)
-  
-  const handlechnage=(fn)=>{
-     setScreenWidth(window.innerWidth)
-     fn()
+   useEffect(() => {
+     AddedOrNot()
+   }, [clicked])
+   
+
+  const setdimension = () => {
+    if (screenWidth >= 768) {
+      SetHeight(height);
+      Setwidth(width);
+    } else {
+      SetHeight("72px");
+      Setwidth("72px");
     }
-    
-    const setdimension =()=>{
-      if(screenWidth>=768){
-        SetHeight(height)
-        Setwidth(width)
-      }else{
-        SetHeight("72px")
-        Setwidth("72px")
-      }
-    }
+  };
   // console.log(height,width)
   useEffect(() => {
-    window.addEventListener("resize",()=>handlechnage(setdimension))
-  
+    window.addEventListener("resize", () => handlechnage(setdimension));
+
     return () => {
-      window.removeEventListener("resize",()=>handlechnage(setdimension))
-    }
-  }, [screenWidth])
-  
+      window.removeEventListener("resize", () => handlechnage(setdimension));
+    };
+  }, [screenWidth]);
 
   const moviedata = data?.data;
   const genreName = moviedata?.genres.map((items) => items.id);
@@ -72,9 +90,7 @@ export default function DetailsBanner({ crew }) {
       : `${Math.floor(moviedata?.runtime / 60)}h ${moviedata?.runtime % 60}m`;
   const producers = crew?.find((crew) => crew.job === "Producer");
   const directors = crew?.find((crew) => crew.job === "Director");
-  
-  
-  
+
   const background = url.backdrop + moviedata?.poster_path;
   return (
     <div className="w-full pt-[100px] mb-[50px] min-[768px]:pt-[120px] min-[768px]:mb-0  min-[768px]:h-[700px]">
@@ -126,22 +142,74 @@ export default function DetailsBanner({ crew }) {
                         rating={moviedata?.vote_average.toFixed(1)}
                       />
                       <div
-                      
                         id="play"
                         className="flex items-center gap-[10px] min-[768px]:gap-[20px] cursor-pointer"
                       >
-                        <Playbtn height={height}
-                      width ={width} />
+                        <Playbtn height={height} width={width} />
                         <span className="text-[16px] min-[768px]:text-[20px] transition-all ease-in-out duration-700 hover:text-[rgba(67,137,216)]">
                           Watch Trailer
                         </span>
-                        
-
                       </div>
+                      {/* add to my list */}
                       <div className="flex overflow-hidden flex-wrap  justify-center items-center gap-[10px] cursor-pointer  ">
-                          <VscAdd className={`font-extrabold text-[30px] min-[768px]:text-[40px] transition-[transform] duration-500 ease-in-out ${clicked?"rotate-[135deg] hover:text-red-600":""} hover:text-[rgba(67,137,216)]`}   onClick={handleAddToList}/>
-                          <span className="text-[16px]  min-[768px]:text-[20px] transition-colors ease-in duration-500 ">{clicked?"Remove":"Add"}</span>
-                        </div>
+                        <VscAdd
+                          className={`font-extrabold text-[30px] min-[768px]:text-[40px] transition-[transform] duration-500 ease-in-out ${
+                            clicked ? "rotate-[135deg] hover:text-red-600" : ""
+                          } hover:text-[rgba(67,137,216)]`}
+                          onClick={handleAddToList}
+                        />
+                        <span className="text-[16px]  min-[768px]:text-[20px] transition-colors ease-in duration-500 ">
+                          {clicked ? "Remove" : "Add"}
+                        </span>
+                      </div>
+                    </div>
+                    {/* Succes Toast */}
+                    <div
+                      id="toast-success"
+                      className="flex fixed bottom-0   items-center w-full max-w-[250px] p-3 mb-4   rounded-lg shadow text-gray-400 bg-gray-800 z-10 transition-[right] duration-500 ease-[cubic-bezier(0.88,-0.35,0.565,1.35)] "
+                      role="alert"
+                      style={{right}}
+                    >
+                      <div className={`inline-flex items-center justify-center flex-shrink-0 w-8 h-8  rounded-lg ${clicked?"bg-green-800 text-green-200":"bg-red-800 text-red-200"} `}>
+                        {clicked ? (
+                          <>
+                            <svg
+                              aria-hidden="true"
+                              className="w-5 h-5"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              ></path>
+                            </svg>
+                            <span className="sr-only">Check icon</span>
+                          </>
+                        ) : (
+                          <>
+                            <svg
+                              aria-hidden="true"
+                              className="w-5 h-5"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clipRule="evenodd"
+                              ></path>
+                            </svg>
+                            <span className="sr-only">Error icon</span>
+                          </>
+                        )}
+                      </div>
+                      <div className="ml-3 text-sm font-normal">
+                        {moviedata?.name || moviedata?.title} {clicked?"added to my list":"removed from my list"}
+                      </div>
                     </div>
                     <div>
                       <div className="">
@@ -179,25 +247,29 @@ export default function DetailsBanner({ crew }) {
                           )}
                         </div>
                         <span className="inline-block w-full h-[0.2px] mt-[20px] opacity-[0.3] bg-white"></span>
-                        {producers&&    <>
+                        {producers && (
+                          <>
+                            <div className="text-[17px] font-semibold mt-[10px]">
+                              Producer :{" "}
+                              <span className=" min-[768px]:ml-[10px] font-medium text-[16px] opacity-[0.5]  ">
+                                {producers?.name}
+                              </span>
+                            </div>
+                            <span className="inline-block w-full h-[0.2px]  opacity-[0.3] bg-white"></span>
+                          </>
+                        )}
 
-                        <div className="text-[17px] font-semibold mt-[10px]">
-                          Producer :{" "}
-                          <span className=" min-[768px]:ml-[10px] font-medium text-[16px] opacity-[0.5]  ">
-                            {producers?.name}
-                          </span>
-                        </div>
-                        <span className="inline-block w-full h-[0.2px]  opacity-[0.3] bg-white"></span>
-                         </>}
-
-                        
-                        {directors&&<><div className="text-[17px] font-semibold mt-[10px]">
-                          Director :{" "}
-                          <span className=" min-[768px]:ml-[10px] font-medium text-[16px] opacity-[0.5]  ">
-                            {directors?.name}
-                          </span>
-                        </div>
-                        <span className="inline-block w-full h-[0.2px]  opacity-[0.3] bg-white"></span></>}
+                        {directors && (
+                          <>
+                            <div className="text-[17px] font-semibold mt-[10px]">
+                              Director :{" "}
+                              <span className=" min-[768px]:ml-[10px] font-medium text-[16px] opacity-[0.5]  ">
+                                {directors?.name}
+                              </span>
+                            </div>
+                            <span className="inline-block w-full h-[0.2px]  opacity-[0.3] bg-white"></span>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

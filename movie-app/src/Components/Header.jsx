@@ -21,17 +21,17 @@ const Header = () => {
   const [clicks, setClicks] = useState(1);
   const inputRef = useRef(null);
   const openSearch = () => {
-    setshowSearch(true);
+    // setshowSearch(true);
     setShowMobileMenu(false);
     setClicks(clicks + 1);
     setNum(1)
-
+    setshowSearch(showSearch?false:true)
    
-    for (let n = 1; n < 100; n++) {
-      if (clicks === 2 * n) {
-        setshowSearch(false);
-      }
-    }
+    // for (let n = 1; n < 100; n++) {
+    //   if (clicks === 2 * n) {
+    //     setshowSearch(false);
+    //   }
+    // }
   };
   
   const openMenu = () => {
