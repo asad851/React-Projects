@@ -34,6 +34,12 @@ export default function DetailsBanner({ crew }) {
                       release_date:data?.data?.release_date
                     };
   const {myListArr} = useSelector(state=>state.mylist)
+  
+  const myListArrstring = JSON.stringify(myListArr)
+  localStorage.setItem('myListArr',myListArrstring);
+  const Arrstring= localStorage.getItem('myListArr');
+  const Arraydata = JSON.parse(Arrstring)
+  console.log(Arraydata)
   const dispatch =useDispatch()
   const handleAddToList = () => {
     setClicked(clicked?false:true)
@@ -56,8 +62,8 @@ export default function DetailsBanner({ crew }) {
     fn();
   };
 
-  const ab = myListArr?.find(list=>list.id===myListObj.id)
-  console.log(ab)
+  const ab = Arraydata?.find(list=>list.id===myListObj.id)
+  
  
 
   function AddedOrNot(){
@@ -70,7 +76,10 @@ export default function DetailsBanner({ crew }) {
    useEffect(() => {
      AddedOrNot()
    }, [id])
-   
+
+   useEffect(() => {
+    
+  }, [clicked])
 
   const setdimension = () => {
     if (screenWidth >= 768) {

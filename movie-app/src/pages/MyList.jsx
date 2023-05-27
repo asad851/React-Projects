@@ -12,20 +12,19 @@ import noposter from "../assets/no-poster.png"
 
 export default function MyList() {
     const navigate =useNavigate()
-    const[mediaType,setMediaType] =useState('')
-    const[id,setId] =useState(null)
-    const [data, setData] = useState(null)
+    
     const {myListArr} = useSelector((state)=>state.mylist)
     const {url} = useSelector((state)=>state.home)
-    
+    const myListArrstring= localStorage.getItem('myListArr');
+    const data = JSON.parse(myListArrstring)
   
    
     
   return (
-    <div className="max-w-[1200px] w-full px-[20px] mx-auto min-[768px]:pt-[120px]  pt-[60px] mb-[60px]">
+    <div className="max-w-[1200px] w-full px-[20px] mx-auto min-[768px]:pt-[120px]  pt-[80px] mb-[60px]">
       
       
-           <div className="text-white text-[18px] mb-[15px]">{`Showing ${myListArr.length}  ${myListArr?.length<=1?"item":"items"} in "My List" `}</div>
+           <div className="text-white text-[18px] mb-[15px]">{`Showing ${data.length}  ${myListArr?.length<=1?"item":"items"} in "My List" `}</div>
           <div
             
             className="w-full h-full  px-[20px] min-[768px]:m-0 min-[768px]:p-0 mx-auto "
@@ -35,7 +34,7 @@ export default function MyList() {
               className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
               
               >
-              {myListArr?.map((item) => {
+              {data?.map((item) => {
                 const postUrl = item?.poster_path
                   ? url.backdrop + item?.poster_path
                   : noposter;

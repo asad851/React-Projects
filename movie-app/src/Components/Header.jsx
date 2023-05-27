@@ -148,7 +148,7 @@ const Header = () => {
           >
             TvSeries
           </li>
-          <li className={`cursor-pointer text-[20px] h-[50px] py-[10px]  w-full flex justify-center items-center hover:text-gray-400 `} onClick={() => navigate("/mylist")}>
+          <li className={`cursor-pointer text-[20px] h-[50px] py-[10px]  w-full flex justify-center items-center hover:text-gray-400 `} onClick={() =>{ navigate("/mylist"),setShowMobileMenu(false)} }>
           My List
         </li>
         </ul>
