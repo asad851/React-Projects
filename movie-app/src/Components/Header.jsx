@@ -27,11 +27,6 @@ const Header = () => {
     setNum(1)
     setshowSearch(showSearch?false:true)
    
-    // for (let n = 1; n < 100; n++) {
-    //   if (clicks === 2 * n) {
-    //     setshowSearch(false);
-    //   }
-    // }
   };
   
   const openMenu = () => {
@@ -39,11 +34,7 @@ const Header = () => {
     setshowSearch(false);
   };
   const navigateTo = (type) => {
-    // if (type === "movie") {
-    //   navigate("/explore/movie");
-    // } else {
-    //   navigate("/explore/tv");
-    // }
+    
     navigate(`explore/${type}`);
     // setshowSearch(false);
     setShowMobileMenu(false);
@@ -128,6 +119,9 @@ const Header = () => {
         <li className={`cursor-pointer hover:text-gray-400 `} onClick={() => navigateTo("tv")}>
           TvSeries
         </li>
+        <li className={`cursor-pointer hover:text-gray-400 `} onClick={() => navigate("/mylist")}>
+          My List
+        </li>
         <li className={`cursor-pointer hover:text-gray-400 `}>
           {<HiOutlineSearch onClick={openSearch} className="font-semibold" />}
         </li>
@@ -135,7 +129,7 @@ const Header = () => {
 
       <div
         className={` transition-[top] delay-[0.3s] ease-linear w-full fixed ${
-          showMobileMenu ? "top-[60px] " : "top-[-120px]"
+          showMobileMenu ? "top-[60px] " : "top-[-150px]"
         } right-0 left-0 border-t-[0.3px] min-[768px]:hidden border-t-[rgba(255,255,255,0.8)]`}
       >
         <ul
@@ -154,7 +148,9 @@ const Header = () => {
           >
             TvSeries
           </li>
-          
+          <li className={`cursor-pointer text-[20px] h-[50px] py-[10px]  w-full flex justify-center items-center hover:text-gray-400 `} onClick={() => navigate("/mylist")}>
+          My List
+        </li>
         </ul>
       </div>
 

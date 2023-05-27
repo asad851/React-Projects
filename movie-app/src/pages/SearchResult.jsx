@@ -113,6 +113,7 @@ export default function SearchResult({num}) {
                 const postUrl = item?.poster_path
                   ? url.backdrop + item?.poster_path
                   : noposter;
+                  
                 return (
                   <div
                     key={item.id}

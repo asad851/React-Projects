@@ -24,7 +24,15 @@ export default function DetailsBanner({ crew }) {
   const [clicked, setClicked] = useState(false);
   
   const [right, setRight] = useState("-250px")
-  const myListObj = { media: mediaType, id: id };
+  const myListObj = { mediaType: `${mediaType}`, 
+                      id: id,
+                      poster_path:data?.data?.poster_path,
+                      genres:data?.data?.genres,
+                      title:data?.data?.title, 
+                      name:data?.data?.name,
+                      vote_average:data?.data?.vote_average,
+                      release_date:data?.data?.release_date
+                    };
   const {myListArr} = useSelector(state=>state.mylist)
   const dispatch =useDispatch()
   const handleAddToList = () => {
@@ -33,7 +41,7 @@ export default function DetailsBanner({ crew }) {
     if(clicked){
      
       dispatch(remove(myListObj.id))
-    }else if(!clicked){
+    }else if(clicked===false){
       dispatch(addToList(myListObj))
     }
     setRight("20px")
@@ -42,15 +50,15 @@ export default function DetailsBanner({ crew }) {
     }, 2500);
     
   };
-  console.log(myListArr)
+  
   const handlechnage = (fn) => {
     setScreenWidth(window.innerWidth);
     fn();
   };
 
   const ab = myListArr?.find(list=>list.id===myListObj.id)
- 
   console.log(ab)
+ 
 
   function AddedOrNot(){
     if(ab){
@@ -61,7 +69,7 @@ export default function DetailsBanner({ crew }) {
   }
    useEffect(() => {
      AddedOrNot()
-   }, [clicked])
+   }, [id])
    
 
   const setdimension = () => {

@@ -11,6 +11,7 @@ import Explore from './pages/Explore/Explore'
 import PageNotFound from './pages/PageNotFound'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
+import MyList from './pages/MyList'
 
   
   
@@ -60,9 +61,11 @@ import Footer from './Components/Footer'
       <Route path='/:mediaType/:id' element={<Details/>} />
       <Route path='/search/:query' element={<SearchResult   />} />
       <Route path='/explore/:mediaType' element={<Explore/>} />
+      <Route path='/mylist' element={<MyList/>}/>
       <Route path='*' element={<PageNotFound/>} />
     </Routes>
     <Footer/>
+    
       
     </>
   )
