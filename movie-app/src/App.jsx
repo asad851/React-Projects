@@ -3,7 +3,7 @@ import {fetchData} from './Api'
 import { useDispatch } from "react-redux"
 import {getApiConfig, getGenre} from './store/homeSlicer'
 import { Routes,Route } from 'react-router-dom'
-
+import { useSelector } from 'react-redux'
 import HomePage from './pages/Home/HomePage'
 import Details from './pages/Details/Details'
 import SearchResult from './pages/SearchResult'
@@ -51,7 +51,8 @@ import MyList from './pages/MyList'
       
        dispatch(getGenre(allgenre))
      }
-     
+     const{myListArr} = useSelector(state=>state.mylist)
+  
      
   return (
     <>

@@ -25,6 +25,7 @@ export default function SearchResult({num}) {
   const navigate = useNavigate()
   
   const {url} = useSelector((state)=>state.home)
+  
   // console.log(data)
   
   const skeleton = () => {

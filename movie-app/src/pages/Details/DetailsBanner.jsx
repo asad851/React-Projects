@@ -35,17 +35,19 @@ export default function DetailsBanner({ crew }) {
                     };
   const {myListArr} = useSelector(state=>state.mylist)
   
-  const myListArrstring = JSON.stringify(myListArr)
+  const myListArrstring = JSON?.stringify(myListArr)
   localStorage.setItem('myListArr',myListArrstring);
   const Arrstring= localStorage.getItem('myListArr');
-  const Arraydata = JSON.parse(Arrstring)
-  console.log(Arraydata)
+  const Arraydata = JSON?.parse(Arrstring)
+  
+  // console.log(Arraydata)
   const dispatch =useDispatch()
+  
   const handleAddToList = () => {
     setClicked(clicked?false:true)
     
     if(clicked){
-     
+      
       dispatch(remove(myListObj.id))
     }else if(clicked===false){
       dispatch(addToList(myListObj))
@@ -78,6 +80,8 @@ export default function DetailsBanner({ crew }) {
    }, [id])
 
    useEffect(() => {
+    
+      
     
   }, [clicked])
 
