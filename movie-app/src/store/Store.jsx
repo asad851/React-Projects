@@ -12,7 +12,8 @@ import MyListSlicer from './MyListSlicer'
 const persistConfig ={
     key:'root',
     version:1,
-    storage
+    storage,
+    
 };
 const rootReducer = combineReducers(
     {

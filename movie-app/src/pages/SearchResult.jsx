@@ -50,20 +50,7 @@ export default function SearchResult({num}) {
         setPageNum((prev)=>prev+1)
       })
   }
-    
-
-//   fetchData(`/search/multi?query=${query}&page=${pageNum}`).then(
-//     (res)=>{
-      
-//  const m =       {
-//           ...data?.data,
-//              results:[...data?.data?.results,...res?.data?.results]
-//         };
-//         setNextdata(m)
-//     //  console.log(m)
-//     })
-//     // console.log(nextdata)
-//     setData(nextdata)
+  
   const fetchNextPage=()=>{
     
     fetchApiData(`/search/multi?query=${query}&page=${pageNum}`).then(
@@ -84,7 +71,7 @@ export default function SearchResult({num}) {
       })
     }
     
-  // console.log(nextdata)
+ 
     useEffect(() => {
       setPageNum(1)
       setData(null)
@@ -97,12 +84,12 @@ export default function SearchResult({num}) {
     <div className="max-w-[1200px] w-full px-[20px] mx-auto min-[768px]:pt-[120px]  pt-[60px] mb-[60px]">
       {loading&&<Spinner/>}
       {!loading ? (<> 
-           <div className="text-white text-[18px] mb-[15px]">{`Showing  ${data?.resuts?.length<=1?"result":"results"} for "${query}" `}</div>
+           {data?.results?.length>0&&<div className="text-white text-[18px] mb-[15px]">{`Showing  ${data?.resuts?.length<=1?"result":"results"} for "${query}" `}</div>}
           <div
             
             className="w-full h-full  px-[20px] min-[768px]:m-0 min-[768px]:p-0 mx-auto "
           >
-              {/* {data?.results?.length>0 ?( */}
+              {data?.results?.length>0 ?(
               <InfiniteScroll
               className="flex gap-[20px] justify-center w-full flex-wrap min-[768px]:gap-[20px] min-[768px]:overflow-hidden  items-center h-full mb-[20px] min-[768px]:mb-[50px] px-[20px] min-[768px]:m-0 min-[768px]:p-0"
               dataLength={data?.results || []}
@@ -148,10 +135,10 @@ export default function SearchResult({num}) {
                   
                   );
                 })}
-                </InfiniteScroll>
-                {/* :(<div className=" w-full text-[25px] text-white font-medium text-center"> {`sorry no results found for "${query}"`}
-                </div>) */}
-                {/* } */}
+                </InfiniteScroll>)
+                 :(<div className=" w-full text-[25px] text-white font-medium text-center"> {`sorry no results found for "${query}"`}
+                </div>) 
+                 } 
           </div></>):
           (<div className="flex gap-[10px] flex-wrap   mx-[-20px] px-[20px] min-[768px]:gap-[20px] min-[768px] min-[768px]:m-0 min-[768px]:p-0">
             {skeleton()}
