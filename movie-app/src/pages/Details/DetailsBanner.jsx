@@ -12,9 +12,10 @@ import Playbtn from "./Playbtn";
 import { VscAdd } from "react-icons/vsc";
 import { useDispatch } from "react-redux";
 import { addToList,remove } from "../../store/MyListSlicer";
+import VideoModal from "./VideoModal";
 
 
-export default function DetailsBanner({ crew }) {
+export default function DetailsBanner({ crew,video }) {
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
   const { url } = useSelector((state) => state.home);
@@ -22,7 +23,8 @@ export default function DetailsBanner({ crew }) {
   const [height, SetHeight] = useState("82px");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [clicked, setClicked] = useState(false);
-  
+  const[showVideoModal,setShowVideoModal] = useState(false);
+  const [videoId, setVideoId] = useState(null);
   const [right, setRight] = useState("-250px")
   const myListObj = { mediaType: `${mediaType}`, 
                       id: id,
@@ -165,6 +167,7 @@ export default function DetailsBanner({ crew }) {
                       <div
                         id="play"
                         className="flex items-center gap-[10px] min-[768px]:gap-[20px] cursor-pointer"
+                        onClick={()=>{setShowVideoModal(true),setVideoId(video?.key)}}
                       >
                         <Playbtn height={height} width={width} />
                         <span className="hidden min-[768px]:block min-[768px]:text-[20px] transition-all ease-in-out duration-700 hover:text-[rgba(67,137,216)]">
@@ -302,6 +305,7 @@ export default function DetailsBanner({ crew }) {
       ) : (
         <></>
       )}
+     {showVideoModal&& <VideoModal setShowVideoModal={setShowVideoModal} videoId={videoId} setVideoId={setVideoId}/>}
     </div>
   );
 }

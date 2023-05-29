@@ -14,13 +14,14 @@ export default function Details() {
     const { data: credits, loading: creditsLoading } = useFetch(
         `/${mediaType}/${id}/credits`
     );
-    // console.log(credits?.data.cast)
-   
-       
-  
+    
+    
+    
+    const vid =data?.data?.results?.filter((video)=> video.name=="Official Trailer")
+    
   return (
     <>
-    <DetailsBanner crew={credits?.data?.crew} />
+    <DetailsBanner crew={credits?.data?.crew} video={vid?.[0]} />
     <Cast  data={credits?.data?.cast} loading={creditsLoading}/>
     <Similar mediaType={mediaType} id={id}/>
     <Recommendation media={mediaType} id={id} />

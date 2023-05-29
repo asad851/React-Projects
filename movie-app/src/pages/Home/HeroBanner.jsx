@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import Playbtn from "../Details/Playbtn";
 import { VscAdd } from "react-icons/vsc";
 import { VscInfo } from "react-icons/vsc";
-
+import VideoModal from "../Details/VideoModal";
 import { addToList, remove } from "../../store/MyListSlicer";
-import Rating from "../../Components/Rating";
+
 
 export default function HeroBanner() {
   const [background, setBackground] = useState("");
@@ -25,6 +25,8 @@ export default function HeroBanner() {
   const { url } = useSelector((state) => state.home);
   const { myListArr } = useSelector((state) => state.mylist);
   const [right, setRight] = useState("-250px");
+  const[showVideoModal,setShowVideoModal] = useState(false);
+  const [videoId, setVideoId] = useState(null);
 
   useEffect(() => {
     let a = data?.data?.results?.[Math.floor(Math.random() * 20)];
@@ -34,6 +36,8 @@ export default function HeroBanner() {
   }, [data]);
   // console.log(randomData)
   const { data: moviedata } = useFetch(`/movie/${randomData?.id}`);
+  const { data:videoData} = useFetch(`/movie/${randomData?.id}/videos`);
+  const video =videoData?.data?.results?.filter((video)=> video.name=="Official Trailer")
   const myListObj = {
     mediaType: "movie",
     id: `${randomData?.id}`,
@@ -44,7 +48,7 @@ export default function HeroBanner() {
     vote_average: moviedata?.data?.vote_average,
     release_date: moviedata?.data?.release_date,
   };
-  console.log(moviedata);
+ 
   const myListArrstring = JSON?.stringify(myListArr)
   localStorage.setItem('myListArr',myListArrstring);
   const Arrstring = localStorage.getItem("myListArr");
@@ -120,6 +124,7 @@ export default function HeroBanner() {
             <div
               id="play"
               className="flex items-center gap-[10px] min-[768px]:gap-[20px] cursor-pointer"
+              onClick={()=>{setShowVideoModal(true),setVideoId(video?.[0].key)}}
             >
               <Playbtn height={height} width={width} />
              
@@ -194,6 +199,7 @@ export default function HeroBanner() {
         </div>
        
       </div>
+      {showVideoModal&&<VideoModal setShowVideoModal={setShowVideoModal} videoId={videoId}/>}
     </div>
   );
 }
