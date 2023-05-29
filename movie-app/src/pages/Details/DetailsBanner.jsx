@@ -156,7 +156,7 @@ export default function DetailsBanner({ crew }) {
                     />
                     <div
                       id="Circlerating"
-                      className="flex items-center justify-start gap-[15px] mt-[20px] mb-[20px]"
+                      className="flex items-center justify-center min-[768px]:justify-start gap-[15px] mt-[20px] mb-[20px] "
                     >
                       <Rating
                         className="max-w-[70px] max-h-[70px] bg-[rgba(10,10,14)] min-[768px]:max-w-[90px] min-[768px]:max-h-[90px] flex justify-center items-center fill-white   "
@@ -167,14 +167,14 @@ export default function DetailsBanner({ crew }) {
                         className="flex items-center gap-[10px] min-[768px]:gap-[20px] cursor-pointer"
                       >
                         <Playbtn height={height} width={width} />
-                        <span className="text-[16px] min-[768px]:text-[20px] transition-all ease-in-out duration-700 hover:text-[rgba(67,137,216)]">
+                        <span className="hidden min-[768px]:block min-[768px]:text-[20px] transition-all ease-in-out duration-700 hover:text-[rgba(67,137,216)]">
                           Watch Trailer
                         </span>
                       </div>
                       {/* add to my list */}
-                      <div className="flex overflow-hidden flex-wrap  justify-center items-center gap-[10px] cursor-pointer  ">
+                      <div className="flex overflow-hidden flex-wrap  justify-center items-center gap-[10px] cursor-pointer min-w-[99px] min-[768px]:min-w-[123px] ">
                         <VscAdd
-                          className={`font-extrabold text-[30px] min-[768px]:text-[40px] transition-[transform] duration-500 ease-in-out ${
+                          className={`font-black text-[30px] min-[768px]:text-[40px] transition-[transform] duration-500 ease-in-out ${
                             clicked ? "rotate-[135deg] hover:text-red-600" : ""
                           } hover:text-[rgba(67,137,216)]`}
                           onClick={handleAddToList}
